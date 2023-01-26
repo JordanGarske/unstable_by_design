@@ -1,6 +1,6 @@
 Meeting timing: Monday 5-7pm
 
-**Meeting minutes 01/24/23:
+**Meeting minutes 01/24/23:**
 
 # End goal: Discord Management Tool                                          
                                                                             
