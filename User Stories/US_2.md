@@ -1,0 +1,1 @@
+As a user, I would like to view tasks that assigned to me in a project
