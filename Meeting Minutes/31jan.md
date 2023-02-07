@@ -20,7 +20,7 @@ Meeting time: Monday 5-7 pm
 - send invites for a specific invites(teams/person)
 
 - scrum management tool that allows users to communicate with a team and create a task and team members can check the task as complete
-- 
+
 
 ### main priorities:                
 - to-do                                 
