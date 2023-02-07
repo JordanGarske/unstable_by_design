@@ -1,1 +1,0 @@
-As a manager, I would like to see the progress on a project
