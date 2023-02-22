@@ -1,2 +1,13 @@
-1. David(manager of the project), I would like to be able to communicate with my team members.
-2. David(manager of the project),I would like to be able to organize my team.
+Job Titles: Project Manager
+
+age: 16-65+
+
+education: High School Diploma, Bachelors, Masters, phd
+
+ethnicity: any
+
+family status: any
+
+Goals: organization for a project/team
+
+tasks: Communication, uploading documents/codes, organization
