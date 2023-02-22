@@ -17,7 +17,7 @@ tasks: Communication, uploading documents/codes, organization
     - message a team member assigned to specific task 
     - call a team member assigned to specific task 
 
-2. organiza the team
+2. organize the team
     - create specific channels/threads
     - assign tasks to team members
     - prioritize tasks
