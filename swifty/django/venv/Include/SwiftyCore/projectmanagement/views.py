@@ -13,6 +13,14 @@ class RoleView(viewsets.ModelViewSet):
     serializer_class = RoleSerializer
     queryset = Role.objects.all()
 
+class ChannelView(viewsets.ModelViewSet):
+    serializer_class = ChannelSerializer
+    queryset = Channel.objects.all()
+
+class RoleToChannelView(viewsets.ModelViewSet):
+    serializer_class = RoleToChannelSerializer
+    queryset = RoleToChannel.objects.all()
+
 class UserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
