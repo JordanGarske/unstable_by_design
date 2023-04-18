@@ -68,12 +68,12 @@ class UserSerializer(serializers.ModelSerializer):
 class RoleToChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoleToChannel
-        fields = ['__all__']
+        fields = '__all__'
 
 class ChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Channel
-        fields = ['__all__']
+        fields = '__all__'
 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
