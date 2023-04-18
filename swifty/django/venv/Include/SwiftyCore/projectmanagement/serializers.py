@@ -15,7 +15,7 @@ class RoleSerializer(serializers.ModelSerializer):
         extra_kwargs = {'Users': {'required': False}}
 
 class UserSerializer(serializers.ModelSerializer):
-    # Roles = RoleSerializer(many=True, read_only=False)
+    # Roles = RoleSerializer(many=True, read_only=True)
     class Meta:
         model = User
         fields = ['UserID', 'Username', 'Password', 'Roles']
@@ -68,12 +68,12 @@ class UserSerializer(serializers.ModelSerializer):
 class RoleToChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoleToChannel
-        fields = []
+        fields = ['__all__']
 
 class ChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Channel
-        fields = []
+        fields = ['__all__']
 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
