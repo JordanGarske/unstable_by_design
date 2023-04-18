@@ -1,4 +1,0 @@
-django:
-#please start venv to start working on django project 
- cd C:\Users\Jordan\Documents\GitHub\robotics\unstable_by_design\swifty\django\venv\Include>
- ..\Scripts\activate

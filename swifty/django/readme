@@ -1,0 +1,7 @@
+1.   cd .\swifty\django\venv\Include\SwiftyCore\
+2.    ..\..\Scripts\activate
+3. if the rest_framework is not showing up enter 
+Control+ shift + p.
+type 'Python: Select Interpreter' and select the same.
+choose your virtual env from the list if it is not listed please choose Enter Interpreter path'
+Give pathe like this 'c:\users\user\django\myvenv\scripts\python.ex'
