@@ -11,7 +11,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
-        fields = ['RoleID', 'Name', 'Description', 'Color', 'ProjectID', 'Channels']
+        fields = ['RoleID', 'Name', 'Description', 'Color', 'ProjectID']
         extra_kwargs = {'Users': {'required': False}}
 
 class UserSerializer(serializers.ModelSerializer):
