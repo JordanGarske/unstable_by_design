@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <div class="projects">
+        <p>USER ICON</p>
+        <h1>Projects</h1>
+        <div *ngFor="let project of projects">
+          <button class="btn" [ngStyle]="{ color: project.Color }">
+            {{ project.Name }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <!-- user name icon goes here -->
+      <div class="main">
+        <!-- this is the main area for anything -->
+        <app-profile></app-profile>
+        <!-- <app-dashboard></app-dashboard> -->
+      </div>
+    </div>
+  </div>
+</div>
