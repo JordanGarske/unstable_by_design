@@ -63,7 +63,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     #     instance = super().update(instance, validated_data)
 
-        return instance
+    #     return instance
 
 class RoleToChannelSerializer(serializers.ModelSerializer):
     class Meta:
