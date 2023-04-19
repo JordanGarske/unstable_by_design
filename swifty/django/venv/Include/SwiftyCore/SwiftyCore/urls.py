@@ -27,7 +27,7 @@ router.register(r'messages', views.MessageView, 'message')
 router.register(r'statuses', views.StatusView, 'status')
 router.register(r'tasks', views.TaskView, 'task')
 router.register(r'channels', views.ChannelView, 'channel')
-router.register(r'roleToChannels', views.RoleToChannelView, 'roleToChannel')
+router.register(r'rolesToChannels', views.RoleToChannelView, 'roleToChannel')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
