@@ -19,7 +19,7 @@ export class UserService {
     return `${this.djangoURL}/Users/${id }`;
   }
   deleteUser(id:number): Observable<User>{
-    return this.http.get<User>(this.setUpUsers(id)).pipe();
+    return this.http.delete<User>(this.setUpUsers(id)).pipe();
   }
   addUser(hero: User): Observable<User> {
     return this.http.post<User>(this.djangoURL, hero, this.httpOptions).pipe(

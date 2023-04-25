@@ -19,7 +19,7 @@ export class TaskService {
     return `${this.djangoURL}/Tasks/${id }`;
   }
   deleteUser(id:number): Observable<Task>{
-    return this.http.get<Task>(this.setUpTasks(id)).pipe();
+    return this.http.delete<Task>(this.setUpTasks(id)).pipe();
   }
   addUser(hero: Task): Observable<Task> {
     return this.http.post<Task>(this.djangoURL, hero, this.httpOptions).pipe(
