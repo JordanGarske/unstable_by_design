@@ -6,7 +6,7 @@ export interface Task {
   Description: string;
   StatusID: number;
   AuthorID: number;
-  Collaborators: User[];
+  Collaborators: number[];
 }
 
 

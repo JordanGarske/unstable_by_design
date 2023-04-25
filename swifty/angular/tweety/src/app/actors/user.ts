@@ -6,8 +6,8 @@ export interface User {
   UserID: number;
   Username: string;
   Password: string;
-  Roles: Role[];
-  Authored_Tasks: Task[];
-  Tasks: Task[];
-  Messages: Message[];
+  Roles: number[];
+  Authored_Tasks: number[];
+  Tasks: number[];
+  Messages: number[];
 }

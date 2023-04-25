@@ -7,6 +7,5 @@ export interface Channel {
   Description: string;
   Color: string;
   ProjectID: number;
-  Messages: Message[];
-  Connections: RoleToChannel[];
+  Messages: number[];
 }

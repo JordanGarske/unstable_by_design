@@ -7,6 +7,5 @@ export interface Role {
   Description: string;
   Color: string;
   ProjectID: number;
-  Users: User[];
-  Connections: RoleToChannel[];
+  Users: number[];
 }

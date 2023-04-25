@@ -7,7 +7,7 @@ export interface Project {
   Name: string;
   Description: string;
   Color: string;
-  Roles: Role[];
-  Channels: Channel[];
-  Statuses: Status[];
+  Roles: number[];
+  Channels: number[];
+  Statuses: number[];
 }
