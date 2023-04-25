@@ -10,6 +10,7 @@ import { LoginComponent } from './loginFolder/login/login.component';
 import { CreateComponent } from './loginFolder/create/create.component';
 import { TaskboardComponent } from './home/taskboard/taskboard.component';
 import { TaskViewComponent } from './home/task-view/task-view.component';
+import { ProjectOverviewComponent } from './home/project-overview/project-overview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { TaskViewComponent } from './home/task-view/task-view.component';
     CreateComponent,
     TaskboardComponent,
     TaskViewComponent,
+    ProjectOverviewComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
   providers: [],
