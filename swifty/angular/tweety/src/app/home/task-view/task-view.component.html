@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Task</title>
+    <style>
+      header {
+        background-color: grey;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: 100vh;
+      }
+      .sidebar {
+        background-color: #f2f2f2;
+        padding: 20px;
+        width: 20%;
+        height: 100%;
+      }
+      .main {
+        padding: 20px;
+        width: 75%;
+      }
+      .task-box {
+        border: 1px solid black;
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+      .task-box h2 {
+        margin-top: 0;
+      }
+      .task-box h3 {
+        margin-top: 0;
+      }
+      .task-box p {
+        margin-bottom: 0;
+      }
+      .task-box .status {
+        float: right;
+      }
+      .column {
+        width: 20%;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Task A</h1>
+    </header>
+    <div class="container">
+      <div class="sidebar">
+        <h2>Settings</h2>
+        <ul>
+          <a href="#">Option 1</a>
+        </ul>
+        <ul>
+          <a href="#">Option 1</a>
+        </ul>
+        <ul>
+          <a href="#">Option 1</a>
+        </ul>
+      </div>
+      <div class="main">
+        <h2>Overview</h2>
+        <form action="saveTask.php" method="POST">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required /><br /><br />
+
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" required></textarea
+          ><br /><br />
+
+          <label for="status">Status:</label>
+          <select id="status" name="status">
+            <option value="to-do">To Do</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option></select
+          ><br /><br />
+
+          <input type="hidden" id="box" name="box" value="" />
+
+          <button type="submit">Save Task</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
