@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class StatusService {
-  statusesUrl = 'localhost:8000/api/statuses'
+  statusesUrl = 'http://localhost:8000/api/statuses/'
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
