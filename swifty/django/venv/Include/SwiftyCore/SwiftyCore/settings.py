@@ -25,7 +25,6 @@ SECRET_KEY = 'django-insecure-#apr1nxw&n_qs$3__5zyuyx$94&f=g_eq_#e!=k=gmrv25nf+w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,11 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'projectmanagement',
-    
+    'corsheaders',
+    'projectmanagement'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,7 +51,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+# CORS_ALLOWED_ORIGINS  = [
+#      'http://localhost:4200',
+# ]
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+]
+CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'SwiftyCore.urls'
 
 TEMPLATES = [
