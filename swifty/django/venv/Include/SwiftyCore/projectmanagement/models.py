@@ -25,14 +25,13 @@ class Channel(models.Model):
     Name = models.CharField(max_length=255)
     Description = models.CharField(max_length=255)
     Color = models.CharField(max_length=255)
-    Roles = models.ManyToManyField(Role, related_name='Channels', through='RoleToChannel')
 
     def __str__(self):
         return self.Name
 
 class RoleToChannel(models.Model):
-    ChannelID = models.ForeignKey(Channel, on_delete=models.CASCADE)
-    RoleID = models.ForeignKey(Role, on_delete=models.CASCADE)
+    ChannelID = models.ForeignKey(Channel, related_name='connections', on_delete=models.CASCADE)
+    RoleID = models.ForeignKey(Role, related_name='connections', on_delete=models.CASCADE)
     Create = models.BooleanField()
     Read = models.BooleanField()
     Update = models.BooleanField()
