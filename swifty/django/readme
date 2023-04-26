@@ -1,0 +1,3 @@
+Due to oversight on my part, Python virtual environment (venv) does not work as intended on other people's systems. This is because the venv was set up to work on my system only. How venv works is that each user must set up their own venv on their computer, and then they can download any used packages that the team will use. Therefore, Python venv will not transport nicely.
+
+To fix this, each team member needs to set up their own venv on their computer. Then, inside the Django project, they should run "pip install -r requirements.txt". This command will install all the required packages, based on the installations that were on my computer, so that the Django project will run on everyone's computer.
