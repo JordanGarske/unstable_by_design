@@ -20,13 +20,7 @@ export class LoginComponent implements OnInit {
        this.temp();
   }
   checkPassword():void {
-      this.users.forEach(item =>{
-        if(item.Password === this.password &&  item.Username === this.username){
-          this.router.navigate(['home'])
-        }
-
-      })
-  }
+      this.users.forEach(item =>{ if(item.Password === this.password &&  item.Username === this.username){ this.router.navigate(['home']) } })}
   temp(): void {
     this.users = [
       {
