@@ -11,7 +11,7 @@ import { User } from 'src/app/actors/user';
 })
 export class CreateComponent {
 
-  user: User = { UserID: 0, Username: '', Password: '', Roles: [], Authored_Tasks: [], Tasks: [], Messages: [] };
+  user: User = { UserID: 9, Username: '', Password: '', Roles: [], Authored_Tasks: [], Tasks: [], Messages: [] };
   confirm_password: string = '';
   action = 'enter data';
    display= "cool"
@@ -26,15 +26,14 @@ export class CreateComponent {
   }
 
   create_user(): void {
-    if (this.user.Password !== '' && this.user.Username !== '' && this.user.Password === this.confirm_password) {
-      this.userService.addUser(this.user).subscribe(user => {
-        // handle success or error here
+
+      let Password = this.user.Password
+      let Username = this.user.Username
+      this.userService.addUser({Password, Username} as User).subscribe(user => {
+           this.goBack();
       });
-    }
   }
 
-  onSubmit(): void {
-    this.create_user();
-  }
+
 
 }
