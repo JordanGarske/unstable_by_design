@@ -11,6 +11,8 @@ import { CreateComponent } from './loginFolder/create/create.component';
 import { TaskboardComponent } from './home/taskboard/taskboard.component';
 import { TaskViewComponent } from './home/task-view/task-view.component';
 import { ProjectOverviewComponent } from './home/project-overview/project-overview.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,7 @@ import { ProjectOverviewComponent } from './home/project-overview/project-overvi
     TaskViewComponent,
     ProjectOverviewComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

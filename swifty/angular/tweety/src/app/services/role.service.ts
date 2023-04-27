@@ -20,7 +20,7 @@ export class RoleService {
   }
 
   /** GET role by id. Will 404 if id not found */
-  getTaskById(id: number): Observable<Role> {
+  getRoleById(id: number): Observable<Role> {
     const url = `${this.rolesUrl}/${id}`;
     return this.http
       .get<Role>(url)
@@ -28,21 +28,21 @@ export class RoleService {
   }
 
   /** PUT: update the role on the server */
-  updateProject(role: Role): Observable<any> {
+  updateRole(role: Role): Observable<any> {
     return this.http
       .put(this.rolesUrl, role, this.httpOptions)
       .pipe(catchError(this.handleError<any>('updateRole')));
   }
 
   /** POST: add a new role to the server */
-  addProject(role: Role): Observable<Role> {
+  addRoles(role: Role): Observable<Role> {
     return this.http
       .post<Role>(this.rolesUrl, role, this.httpOptions)
       .pipe(catchError(this.handleError<Role>('addRole')));
   }
 
   /** DELETE: delete the role from the server */
-  deleteProject(id: number): Observable<Role> {
+  deleteRoles(id: number): Observable<Role> {
     const url = `${this.rolesUrl}/${id}`;
 
     return this.http
@@ -51,7 +51,7 @@ export class RoleService {
   }
 
   /* GET roles whose name contains search term */
-  searchProjects(term: string): Observable<Role[]> {
+  searchRoles(term: string): Observable<Role[]> {
     if (!term.trim()) {
       // if not search term, return empty role array.
       return of([]);

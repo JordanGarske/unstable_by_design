@@ -36,3 +36,4 @@ class StatusView(viewsets.ModelViewSet):
 class TaskView(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
+
