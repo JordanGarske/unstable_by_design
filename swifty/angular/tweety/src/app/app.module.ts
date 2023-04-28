@@ -12,6 +12,8 @@ import { TaskboardComponent } from './home/taskboard/taskboard.component';
 import { TaskViewComponent } from './home/task-view/task-view.component';
 import { ProjectOverviewComponent } from './home/project-overview/project-overview.component';
 import { FormsModule } from '@angular/forms';
+import { HouseComponent } from './house/house.component';
+import { ProjectDetailComponent } from './house/project-detail/project-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { FormsModule } from '@angular/forms';
     TaskboardComponent,
     TaskViewComponent,
     ProjectOverviewComponent,
+    HouseComponent,
+    ProjectDetailComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],

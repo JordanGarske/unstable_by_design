@@ -14,13 +14,15 @@ export class LoginComponent implements OnInit {
   username:string  = ""; 
   submit:boolean = false ; 
   users:User[] = [] 
-  constructor(private userservice: UserService, currentuserstorageservice:CurrentUserStorageService, private router: Router,){}
+  constructor(private userservice: UserService, private currentuserstorageservice:CurrentUserStorageService, private router: Router,){}
   ngOnInit(): void {
       this.userservice.getUsers().subscribe(items => this.users = items)
        
   }
   checkPassword():void {
-      this.users.forEach(item =>{ if(item.Password === this.password &&  item.Username === this.username){ this.router.navigate(['home']) } })}
+      this.users.forEach(item =>{ if(item.Password === this.password &&  item.Username === this.username){
+         this.currentuserstorageservice.setUser(item)
+         this.router.navigate(['home']); } })}
   
 }
 

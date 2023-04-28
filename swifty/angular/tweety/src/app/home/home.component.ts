@@ -3,18 +3,14 @@ import { Observable, of } from 'rxjs';
 
 import { ProjectService } from '../services/project.service';
 import { Project } from '../actors/project';
+import { CurrentUserStorageService } from '../current-user-storage.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
   projects: Project[] = [];
-  constructor(private projServ: ProjectService) {}
-  ngOnInit() {
-    this.projServ
-      .getProjects()
-      .subscribe((projects) => (this.projects = projects));
-  }
+  constructor(private currentUser:CurrentUserStorageService ) {}
 }

@@ -6,7 +6,8 @@ import {RoleService} from './services/role.service';
 import {StatusService} from './services/status.service';
 import {UserService} from './services/user.service';
 import {User} from './actors/user'
-import { Observable, mergeMap } from 'rxjs';
+import {Project} from './actors/project'
+import { Observable, map, mergeMap } from 'rxjs';
 import { Role } from './actors/role';
 
 @Injectable({
@@ -26,4 +27,26 @@ export class CurrentUserStorageService {
       this.roles = filteredRoles;
     });
   }
+  getUser():User{
+    return this.user
+  }
+  getCurrentUserProjects():Observable<Project[]> {
+    return this.projectservice.getProjects().pipe(
+      map(projects => {
+        
+        return projects.filter(project => {
+          for (let i = 0; i < this.roles.length; i++) {
+               if( this.roles[i].ProjectID != project.ProjectID){
+                return false
+               }
+
+          }
+          return true
+          
+        });
+      
+      })
+    );
+  }
 }
+
