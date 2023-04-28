@@ -5,6 +5,19 @@
           <div>
             <h5 class="mb-0">{{project.Name}}</h5>
             <small>{{project.Description}}</small>
+            <small>{{project.ProjectID}}</small>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let project of userrole">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+
+            <small>{{project.RoleID}}</small>
           </div>
         </div>
       </li>

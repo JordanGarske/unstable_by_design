@@ -20,33 +20,36 @@ export class CurrentUserStorageService {
      this.user = {UserID: 0,  Username: "",   Password:"", Roles:[], Authored_Tasks:[], Tasks:[],Messages:[] };
    }
 
-  setUser(loginUser: User): void {
+   setUser(loginUser: User): void {
     this.user = loginUser;
     this.roleservice.getRoles().subscribe(x => {
-      const filteredRoles = x.filter(b => b.Users.includes(loginUser.UserID));
-      this.roles = filteredRoles;
+      let uniqueData = x.filter((value, index, self) => {
+        return self.indexOf(value) === index;
+      }).filter(g => this.user.Roles.includes(g.RoleID) );
+      this.roles = uniqueData
     });
   }
   getUser():User{
     return this.user
   }
-  getCurrentUserProjects():Observable<Project[]> {
+  getrole():Role[]{
+    return this.roles
+  }
+  getCurrentUserProjects(): Observable<Project[]> {
     return this.projectservice.getProjects().pipe(
       map(projects => {
-        
-        return projects.filter(project => {
-          for (let i = 0; i < this.roles.length; i++) {
-               if( this.roles[i].ProjectID != project.ProjectID){
-                return false
-               }
-
+        return projects.filter(item => {
+          for (let index = 0; index < this.roles.length; index++) {
+            if (this.roles[index].ProjectID === item.ProjectID) {
+              return true;
+            }
           }
-          return true
-          
+          return false;
         });
-      
       })
     );
   }
+  
+  
 }
 

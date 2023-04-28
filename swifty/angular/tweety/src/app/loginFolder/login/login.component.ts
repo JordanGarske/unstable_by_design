@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
   checkPassword():void {
       this.users.forEach(item =>{ if(item.Password === this.password &&  item.Username === this.username){
-         this.currentuserstorageservice.setUser(item)
+         this.currentuserstorageservice.setUser(item);
          this.router.navigate(['home']); } })}
   
 }
