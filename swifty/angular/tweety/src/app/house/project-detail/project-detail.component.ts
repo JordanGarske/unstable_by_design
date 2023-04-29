@@ -13,6 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProjectDetailComponent implements OnInit {
   userProjects:Project[] = []; 
   userrole:Role[] = []; 
+  switch:string = "project"
   constructor(private userservice: UserService, private currentuserstorageservice:CurrentUserStorageService, private router: Router,){}
   
   ngOnInit(): void {
@@ -20,7 +21,9 @@ export class ProjectDetailComponent implements OnInit {
         this.userrole = this.currentuserstorageservice.getrole();
         console.log(this.userrole);
       });
-      
+  }
+  switchItem(item:string): void {
+     this.switch = item ; 
   }
 
 }
