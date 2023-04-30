@@ -11,11 +11,15 @@ import {User} from '../actors/user'
 })
 export class HouseComponent implements OnInit {
   user:User;
+  proj:Project = {} as Project;
   constructor(private userservice: UserService, private currentuserstorageservice:CurrentUserStorageService, private router: Router,){
     this.user = {} as User;
   }
   ngOnInit(): void {
    this.user = this.currentuserstorageservice.getUser()
+  }
+  givenProject(project:Project):void{
+    this.proj = project;
   }
   
 }

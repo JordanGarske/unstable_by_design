@@ -1,0 +1,6 @@
+<ul *ngIf="selectedProject.Name !== ''">
+    <li *ngFor="let item of userRoles ">
+      {{ item.Name }}
+      {{item.Description}}
+    </li>
+  </ul>

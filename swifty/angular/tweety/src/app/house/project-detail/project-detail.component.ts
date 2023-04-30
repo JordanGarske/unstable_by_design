@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/actors/project';
 import { Role } from 'src/app/actors/role';
@@ -14,6 +14,7 @@ export class ProjectDetailComponent implements OnInit {
   userProjects:Project[] = []; 
   userrole:Role[] = []; 
   switch:string = "project"
+  @Output() clickProject = new EventEmitter<Project>();
   constructor(private userservice: UserService, private currentuserstorageservice:CurrentUserStorageService, private router: Router,){}
   
   ngOnInit(): void {
@@ -25,5 +26,7 @@ export class ProjectDetailComponent implements OnInit {
   switchItem(item:string): void {
      this.switch = item ; 
   }
-
+  selectedProject(proj:Project):void{
+    this.clickProject.emit(proj);
+  }
 }

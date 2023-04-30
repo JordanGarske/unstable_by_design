@@ -14,6 +14,8 @@ import { ProjectOverviewComponent } from './home/project-overview/project-overvi
 import { FormsModule } from '@angular/forms';
 import { HouseComponent } from './house/house.component';
 import { ProjectDetailComponent } from './house/project-detail/project-detail.component';
+import { DisplayDetailComponent } from './house/display-detail/display-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { ProjectDetailComponent } from './house/project-detail/project-detail.co
     ProjectOverviewComponent,
     HouseComponent,
     ProjectDetailComponent,
+    DisplayDetailComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],

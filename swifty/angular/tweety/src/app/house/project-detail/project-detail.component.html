@@ -1,43 +1,24 @@
-<div class="card">
-  <div class="card-header">
-    <h5 class="card-title mb-0">Dashboard</h5>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <button class="nav-link btn btn-link" (click)="switch = 'project'">
-              <i class="bi bi-folder"></i> Projects
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link btn btn-link" (click)="switch = 'role'">
-              <i class="bi bi-people"></i> Roles
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+      <div *ngIf="switch === 'project'">
+        <h2 class="text-center mb-5">Projects</h2>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item list-group-item-action rounded-0 border-0 py-3" *ngFor="let project of userProjects">
+            <button (click)="selectedProject(project);" class="w-100 bg-light border-0 rounded-0 shadow-sm">
+              <div class="row align-items-center">
+                <div class="col-md-9">
+                  <h4 class="mb-1">{{project.Name}}</h4>
+                  <p class="mb-0">{{project.Description}}</p>
+                </div>
+              </div>
             </button>
           </li>
         </ul>
       </div>
-      <div class="col-md-9">
-        <div *ngIf="switch === 'project'">
-          <h5 class="mb-3">Projects</h5>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let project of userProjects">
-              <h6 class="mb-0">{{project.Name}}</h6>
-              <small class="text-muted">{{project.Description}}</small>
-            </li>
-          </ul>
-        </div>
-        <div *ngIf="switch === 'role'">
-          <h5 class="mb-3">Roles</h5>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let role of userrole">
-              <h6 class="mb-0">{{role.Name}}</h6>
-              <small class="text-muted">{{role.Description}}</small>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
   </div>
 </div>
+
+
+
