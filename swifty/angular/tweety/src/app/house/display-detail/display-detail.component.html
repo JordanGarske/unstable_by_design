@@ -1,6 +1,9 @@
-<ul *ngIf="selectedProject.Name !== ''">
-    <li *ngFor="let item of userRoles ">
-      {{ item.Name }}
-      {{item.Description}}
-    </li>
-  </ul>
+
+  <div class="list-group d-flex flex-row">
+    <a *ngFor="let item of userRoles" class="list-group-item list-group-item-action flex-fill">
+      <div class="list-group">
+        {{ item.Name }}
+      </div>
+    </a>
+  </div>
+  
