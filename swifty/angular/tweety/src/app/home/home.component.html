@@ -5,12 +5,16 @@
         <p>USER ICON</p>
         <h1>Projects</h1>
         <div *ngFor="let project of projects">
-          <button class="btn" [ngStyle]="{ color: project.Color }">
+          <button
+            class="btn"
+            [ngStyle]="{ color: project.Color }"
+            (click)="clickProject(project)"
+          >
             {{ project.Name }}
           </button>
         </div>
         <div id="new-project">
-          <button class="btn">New Project</button>
+          <button class="btn" (click)="clickNewProject()">New Project</button>
         </div>
       </div>
     </div>
@@ -18,9 +22,11 @@
       <!-- user name icon goes here -->
       <div class="main">
         <!-- this is the main area for anything(switch statment) -->
-        <!-- <app-taskboard></app-taskboard> -->
-        <app-project-overview></app-project-overview>
-        <!-- <app-task-view></app-task-view> -->
+        <app-taskboard *ngIf="displayScreen == 'taskboard'"></app-taskboard>
+        <app-project-overview
+          *ngIf="displayScreen == 'overview'"
+        ></app-project-overview>
+        <app-task-view *ngIf="displayScreen == 'task-view'"></app-task-view>
       </div>
     </div>
   </div>

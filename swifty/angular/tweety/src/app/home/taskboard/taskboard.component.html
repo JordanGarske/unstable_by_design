@@ -1,20 +1,40 @@
-<header><h1>Project</h1></header>
+<header>
+  <h1>{{ projectSelected }}</h1>
+</header>
 <body>
   <div class="container">
     <div class="box">
-      <a href="addTask.html"><button class="add-button"></button></a>
+      <button class="add-button" (click)="addTask()"></button>
       <h2>Task to be done:</h2>
-      <ul id="box1"></ul>
+      <div *ngFor="let task of notStartedTasks">
+        <div class="card" style="width: 18rem" (click)="clickTask(task)">
+          <div class="card-body">
+            <h5 class="card-title">{{ task.Name }}</h5>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="box">
-      <a href="addTask.html"><button class="add-button"></button></a>
-      <h2>Task Completed</h2>
-      <ul id="box2"></ul>
-    </div>
-    <div class="box">
-      <a href="addTask.html"><button class="add-button"></button></a>
+      <button class="add-button" (click)="addTask()"></button>
       <h2>Task in progress:</h2>
-      <ul id="box3"></ul>
+      <div *ngFor="let task of inProgressTasks">
+        <div class="card" style="width: 18rem" (click)="clickTask(task)">
+          <div class="card-body">
+            <h5 class="card-title">{{ task.Name }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <button class="add-button" (click)="addTask()"></button>
+      <h2>Task Completed</h2>
+      <div *ngFor="let task of completedTasks">
+        <div class="card" style="width: 18rem" (click)="clickTask(task)">
+          <div class="card-body">
+            <h5 class="card-title">{{ task.Name }}</h5>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </body>
