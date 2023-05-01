@@ -1,8 +1,11 @@
 
   <div class="list-group d-flex flex-row">
-    <div>
-        <button routerLink="">+ </button>
+
+      <div>
+        <button >  <a routerLink="/create/project/{{selectedProject.ProjectID}}/roles">+</a> </button>
     </div>
+
+
     <a *ngFor="let item of userRoles" class="list-group-item list-group-item-action flex-fill">
         {{item.Name}}
       <div class="list-group">

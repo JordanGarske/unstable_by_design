@@ -16,6 +16,7 @@ import { HouseComponent } from './house/house.component';
 import { ProjectDetailComponent } from './house/project-detail/project-detail.component';
 import { DisplayDetailComponent } from './house/display-detail/display-detail.component';
 import { TicketDisplayComponent } from './house/display-detail/ticket-display/ticket-display.component';
+import { CreateActorComponent } from './create-actor/create-actor.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { TicketDisplayComponent } from './house/display-detail/ticket-display/ti
     ProjectDetailComponent,
     DisplayDetailComponent,
     TicketDisplayComponent,
+    CreateActorComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],
