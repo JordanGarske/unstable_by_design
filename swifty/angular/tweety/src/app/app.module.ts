@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { HouseComponent } from './house/house.component';
 import { ProjectDetailComponent } from './house/project-detail/project-detail.component';
 import { DisplayDetailComponent } from './house/display-detail/display-detail.component';
+import { TicketDisplayComponent } from './house/display-detail/ticket-display/ticket-display.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { DisplayDetailComponent } from './house/display-detail/display-detail.co
     HouseComponent,
     ProjectDetailComponent,
     DisplayDetailComponent,
+    TicketDisplayComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],

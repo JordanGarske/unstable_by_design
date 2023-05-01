@@ -2,7 +2,7 @@
   <div class="list-group d-flex flex-row">
     <a *ngFor="let item of userRoles" class="list-group-item list-group-item-action flex-fill">
       <div class="list-group">
-        {{ item.Name }}
+         <app-ticket-display [certainTask]="item"></app-ticket-display>
       </div>
     </a>
   </div>

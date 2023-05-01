@@ -1,0 +1,6 @@
+<div *ngIf="userTasks">
+    <a *ngFor="let item of userTasks" class="list-group-item list-group-item-action flex-fill">
+        {{item.Name}}
+        {{item.Description}}
+    </a>
+</div>  
