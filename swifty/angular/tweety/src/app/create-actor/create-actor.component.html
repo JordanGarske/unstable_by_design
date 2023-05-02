@@ -1,3 +1,22 @@
-<p>create-actor works!</p>
-{{owner}}
-{{createFor}}
+<div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <h2>Create Task</h2>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter task name" [(ngModel)]="task.Name" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" rows="5" placeholder="Enter task description" [(ngModel)]="task.Description" required></textarea>
+          </div>
+          <div *ngIf="statuses" class="form-group">
+            <label for="ticketStatus">Ticket Status</label>
+            <select class="form-control"  >
+                    <option (change)="task.StatusID = stat.StatusID" *ngFor="let stat of statuses">{{stat.Name}}</option > 
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="createTask();">Create Task</button>
+      </div>
+    </div>
+  </div>
