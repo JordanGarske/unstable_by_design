@@ -1,4 +1,4 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Project } from 'src/app/actors/project';
 import { Role } from 'src/app/actors/role';
 import { Status } from 'src/app/actors/status';
@@ -10,30 +10,30 @@ import { StatusService } from 'src/app/services/status.service';
   templateUrl: './taskboard.component.html',
   styleUrls: ['./taskboard.component.scss'],
 })
-export class TaskboardComponent {
+export class TaskboardComponent implements OnInit {
   completedTasks: number = 0;
   inProgressTasks: number =0;
   notStartedTasks:number =0;
   projectSelected = 'Temp Project A'; //import from settings
-
    constructor(private userStroage: CurrentUserStorageService, private statusService: StatusService){}
+   ngOnInit(): void {
+      this.userStroage.getCurrentProject$().subscribe(x => this.getProjectstatus())
+  }
   addTask() {}
   clickTask(task: Task) {}
   getProjectstatus(): void{
+    
     let temp: Status[];
     if(this.userStroage.getCurrentProject() ){
       this.statusService.getStatuses().subscribe(stat =>{    
         temp  = stat.filter( s => s.ProjectID == this.userStroage.getCurrentProject().ProjectID);
         console.log(stat);
-        
-        if(temp.length === 3 ){
-            this.completedTasks = temp[2].StatusID;
-        }
+        if(temp.length === 3 ){this.completedTasks = temp[2].StatusID; }
         this.inProgressTasks = temp[1].StatusID;
-        this.notStartedTasks = temp[1].StatusID;
-        
+        this.notStartedTasks = temp[1].StatusID; 
         
 })
+      
 
 }
 

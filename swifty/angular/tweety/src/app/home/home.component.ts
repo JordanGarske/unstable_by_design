@@ -23,10 +23,10 @@ export class HomeComponent implements OnInit {
   }
   select: number = 0; // this can be any : 1:taskboard / 2:overview / 3:task-view / 4:
   clickProject(project: Project) {
-    this.select = 1;
-    console.log(project);
     this.currentUser.setCurrentProject(project)
-    this.childComponent?.getProjectstatus();
+    // this.childComponent?.getProjectstatus();
+    this.select = 1;
+    
   }
   clickNewProject() {}
 }

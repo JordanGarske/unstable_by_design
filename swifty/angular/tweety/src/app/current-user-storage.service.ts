@@ -7,7 +7,7 @@ import { StatusService } from './services/status.service';
 import { UserService } from './services/user.service';
 import { User } from './actors/user';
 import { Project } from './actors/project';
-import { Observable, map, mergeMap } from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap } from 'rxjs';
 import { Role } from './actors/role';
 import { Task } from './actors/task';
 
@@ -19,7 +19,10 @@ export class CurrentUserStorageService {
   private roles: Role[] = [];
   //currrents
   private currentProject: Project = {} as Project;
+  
   private currentTask: Task = {} as Task;
+  // #tesing
+  private currentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>({} as Project);
 
   constructor(
     private userservice: UserService,
@@ -66,7 +69,9 @@ export class CurrentUserStorageService {
   public getCurrentTask(): Task {
     return this.currentTask;
   }
-
+  public getCurrentProject$(): Observable<Project> {
+    return this.currentProject$.asObservable();
+  }
   public setCurrentTask(task: Task): void {
     this.currentTask = task;
   }
