@@ -23,6 +23,10 @@ export class CurrentUserStorageService {
   private currentTask: Task = {} as Task;
   // #tesing
   private currentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>({} as Project);
+  private currentTask$: BehaviorSubject<Task> = new BehaviorSubject<Task>({} as Task);
+
+
+
 
   constructor(
     private userservice: UserService,
@@ -69,10 +73,21 @@ export class CurrentUserStorageService {
   public getCurrentTask(): Task {
     return this.currentTask;
   }
+
+  public setCurrentTask(task: Task): void {
+    this.currentTask = task;
+  }
+  //you must subscription and to be safe after getting value resub to it 
+  setCurrentProject$(value: Project) {
+    this.currentProject$.next(value);
+  }
   public getCurrentProject$(): Observable<Project> {
     return this.currentProject$.asObservable();
   }
-  public setCurrentTask(task: Task): void {
-    this.currentTask = task;
+  setCurrentTask$(value: Task) {
+    this.currentTask$.next(value);
+  }
+  public getCurrentTask$(): Observable<Task> {
+    return this.currentTask$.asObservable();
   }
 }
