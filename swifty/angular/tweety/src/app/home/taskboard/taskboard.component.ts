@@ -17,7 +17,7 @@ export class TaskboardComponent implements OnInit {
   projectSelected = 'Temp Project A'; //import from settings
    constructor(private userStroage: CurrentUserStorageService, private statusService: StatusService){}
    ngOnInit(): void {
-      this.userStroage.getCurrentProject$().subscribe(x => this.getProjectstatus(x))
+      this.userStroage.getCurrentProject$().subscribe(x => {if(x){this.getProjectstatus(x)}})
   }
   addTask() {}
   clickTask(task: Task) {}
@@ -31,8 +31,10 @@ export class TaskboardComponent implements OnInit {
         this.inProgressTasks = temp[1].StatusID;
         this.notStartedTasks = temp[0].StatusID; 
         this.userStroage.getProjectStatusID().push(temp[0],temp[1],temp[1]);
-        this.userStroage.getCurrentTask$().subscribe(excute => { if(excute.TaskID !== undefined){
-          this.userStroage.setSelect$(3)}})
+        this.userStroage.getCurrentTask$().subscribe(excute => { if(excute){
+          this.userStroage.setSelect$(3);
+          this.userStroage.setCurrentTask$(undefined);
+        }})
 
 })
 

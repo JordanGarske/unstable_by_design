@@ -23,8 +23,8 @@ export class CurrentUserStorageService {
   
   private currentTask: Task = {} as Task;
   // #tesing
-  private currentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>({} as Project);
-  private currentTask$: BehaviorSubject<Task> = new BehaviorSubject<Task>({} as Task);
+  private currentProject$: BehaviorSubject<Project | undefined> = new BehaviorSubject<Project | undefined>(undefined);
+  private currentTask$: BehaviorSubject<Task | undefined> = new BehaviorSubject<Task | undefined>(undefined);
   private projectStatus: Status[] = [];
   private select: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
@@ -89,16 +89,16 @@ export class CurrentUserStorageService {
     this.projectStatus = statusID;
   }
   //you must subscription and to be safe after getting value resub to it 
-  setCurrentProject$(value: Project) {
+  setCurrentProject$(value: Project | undefined) {
     this.currentProject$.next(value);
   }
-  public getCurrentProject$(): Observable<Project> {
+  public getCurrentProject$(): Observable<Project | undefined> {
     return this.currentProject$.asObservable();
   }
-  setCurrentTask$(value: Task) {
+  setCurrentTask$(value: Task | undefined) {
     this.currentTask$.next(value);
   }
-  public getCurrentTask$(): Observable<Task> {
+  public getCurrentTask$(): Observable<Task | undefined> {
     return this.currentTask$.asObservable();
   }
 
