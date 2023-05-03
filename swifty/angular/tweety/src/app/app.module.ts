@@ -19,6 +19,10 @@ import { TicketDisplayComponent } from './house/display-detail/ticket-display/ti
 import { CreateActorComponent } from './create-actor/create-actor.component';
 import { TaskDetailComponent } from './home/taskboard/task-detail/task-detail.component';
 import { TaskEditComponent } from './home/task-edit/task-edit.component';
+import { RoleEditComponent } from './home/role-edit/role-edit.component';
+import { StatusEditComponent } from './home/status-edit/status-edit.component';
+import { RoleOverviewComponent } from './home/role-overview/role-overview.component';
+import { ProjectSidebarComponent } from './home/project-sidebar/project-sidebar.component';
 
 
 @NgModule({
@@ -37,6 +41,10 @@ import { TaskEditComponent } from './home/task-edit/task-edit.component';
     CreateActorComponent,
     TaskDetailComponent,
     TaskEditComponent,
+    RoleEditComponent,
+    StatusEditComponent,
+    RoleOverviewComponent,
+    ProjectSidebarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],

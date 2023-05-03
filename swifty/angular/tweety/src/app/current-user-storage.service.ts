@@ -25,9 +25,11 @@ export class CurrentUserStorageService {
   // #tesing
   private currentProject$: BehaviorSubject<Project | undefined> = new BehaviorSubject<Project | undefined>(undefined);
   private currentTask$: BehaviorSubject<Task | undefined> = new BehaviorSubject<Task | undefined>(undefined);
+  private currentStatus$: BehaviorSubject<Status | undefined> = new BehaviorSubject<Status | undefined>(undefined);
   private projectStatus: Status[] = [];
   private select: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
+  private currentUser$: BehaviorSubject<User | undefined> = new BehaviorSubject<User | undefined>(undefined);
+  private currentRole$: BehaviorSubject<Role | undefined> = new BehaviorSubject<Role | undefined>(undefined);
 
 
 
@@ -100,6 +102,30 @@ export class CurrentUserStorageService {
   }
   public getCurrentTask$(): Observable<Task | undefined> {
     return this.currentTask$.asObservable();
+  }
+
+  setCurrentStatus$(value: Status | undefined) {
+    this.currentStatus$.next(value);
+  }
+
+  public getCurrentStatus$(): Observable<Status | undefined> {
+    return this.currentStatus$.asObservable();
+  }
+
+  setCurrentUser$(value: User | undefined) {
+    this.currentUser$.next(value);
+  }
+
+  public getCurrentUser$(): Observable<User | undefined> {
+    return this.currentUser$.asObservable();
+  }
+
+  setCurrentRole$(value: Role | undefined) {
+    this.currentRole$.next(value);
+  }
+
+  public getCurrentRole$(): Observable<Role | undefined> {
+    return this.currentRole$.asObservable();
   }
 
   setSelect$(value: number) {

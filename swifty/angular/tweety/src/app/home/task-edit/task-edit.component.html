@@ -12,12 +12,12 @@
             <textarea class="form-control" id="description" rows="5" placeholder="task.Description" [(ngModel)]="task.Description" required></textarea>
           </div>
           <div *ngIf="statusOptions" class="form-group">
-            <label for="ticketStatus">Ticket Status</label>
+            <label for="ticketStatus">Task Status</label>
             <select class="form-control"  >
                     <option (change)="task.StatusID = stat.StatusID" *ngFor="let stat of statusOptions">{{stat.Name}}</option > 
             </select>
           </div>
-          <button type="submit" class="btn btn-primary" (click)="updateTask();">Create Task</button>
+          <button type="submit" class="btn btn-primary" (click)="updateTask();">Update Task</button>
       </div>
     </div>
   </div>
