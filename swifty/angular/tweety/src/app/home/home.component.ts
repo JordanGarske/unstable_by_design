@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from '../actors/project';
 import { CurrentUserStorageService } from '../current-user-storage.service';
+import { Task } from '../actors/task';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   select: number = 0; // this can be any : 1:taskboard / 2:overview / 3:task-view / 4:
   clickProject(project: Project) {
     this.currentUser.setCurrentProject$(project)
+    
     // this.childComponent?.getProjectstatus();
     this.select = 1;
     
