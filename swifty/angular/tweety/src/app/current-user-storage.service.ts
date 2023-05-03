@@ -44,6 +44,7 @@ export class CurrentUserStorageService {
   getrole(): Role[] {
     return this.roles;
   }
+  
   getCurrentUserProjects(): Observable<Project[]> {
     return this.projectservice.getProjects().pipe(
       map((projects) => {
@@ -51,11 +52,22 @@ export class CurrentUserStorageService {
           for (let index = 0; index < this.roles.length; index++) {
             if (this.roles[index].ProjectID === item.ProjectID) {
               return true;
-            }
-          }
-          return false;
-        });
-      })
-    );
+            }}
+            return false;});}));
+  }
+  public getCurrentProject(): Project {
+    return this.currentProject;
+  }
+
+  public setCurrentProject(project: Project): void {
+    this.currentProject = project;
+  }
+
+  public getCurrentTask(): Task {
+    return this.currentTask;
+  }
+
+  public setCurrentTask(task: Task): void {
+    this.currentTask = task;
   }
 }

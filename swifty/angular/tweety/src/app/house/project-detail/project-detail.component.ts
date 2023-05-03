@@ -20,7 +20,6 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit(): void {
       this.currentuserstorageservice.getCurrentUserProjects().subscribe(projs =>{this.userProjects = projs;
         this.userrole = this.currentuserstorageservice.getrole();
-        console.log(this.userrole);
       });
   }
   switchItem(item:string): void {

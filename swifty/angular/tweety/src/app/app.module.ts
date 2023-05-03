@@ -17,6 +17,7 @@ import { ProjectDetailComponent } from './house/project-detail/project-detail.co
 import { DisplayDetailComponent } from './house/display-detail/display-detail.component';
 import { TicketDisplayComponent } from './house/display-detail/ticket-display/ticket-display.component';
 import { CreateActorComponent } from './create-actor/create-actor.component';
+import { TaskDetailComponent } from './home/taskboard/task-detail/task-detail.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { CreateActorComponent } from './create-actor/create-actor.component';
     DisplayDetailComponent,
     TicketDisplayComponent,
     CreateActorComponent,
+    TaskDetailComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],
