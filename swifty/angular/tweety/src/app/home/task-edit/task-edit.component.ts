@@ -15,14 +15,17 @@ export class TaskEditComponent implements OnInit {
   constructor(private taskService: TaskService, private userStroage: CurrentUserStorageService){}
   ngOnInit( ): void {
     this.userStroage.getCurrentTask$().subscribe(selected => {
+      
       if(selected){
-      this.task = selected
-      this.statusOptions = this.userStroage.getProjectStatusID().filter( x => x !=undefined)
-      }
-    });
+        console.log(selected.AuthorID);
+      this.task = selected;
+      this.statusOptions = this.userStroage.getProjectStatusID().filter( x => x !=undefined);
+      this.userStroage.setCurrentTask$(undefined);
+      }}).unsubscribe();
   }
   updateTask():void{
     this.taskService.updateTask(this.task);
+    
   }
   
 }

@@ -12,7 +12,6 @@ export class TaskDetailComponent implements OnChanges {
   userTasks?:Task[]; 
   constructor(private taskService: TaskService, private userStroage: CurrentUserStorageService){}
   ngOnChanges(): void {
-    console.log("cool");
     
     if(this.certainTask){
         this.taskService.getTasks().subscribe(items => {

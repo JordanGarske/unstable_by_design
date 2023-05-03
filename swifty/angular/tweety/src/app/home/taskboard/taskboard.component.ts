@@ -26,24 +26,13 @@ export class TaskboardComponent implements OnInit {
     if(this.userStroage.getCurrentProject() ){
       this.statusService.getStatuses().subscribe(stat =>{    
         temp  = stat.filter( s => s.ProjectID === proj.ProjectID);
-        console.log(stat);
         this.completedTasks = temp[1].StatusID; 
         this.inProgressTasks = temp[1].StatusID;
         this.notStartedTasks = temp[0].StatusID; 
         this.userStroage.getProjectStatusID().push(temp[0],temp[1],temp[1]);
         this.userStroage.getCurrentTask$().subscribe(excute => { if(excute){
           this.userStroage.setSelect$(3);
-          this.userStroage.setCurrentTask$(undefined);
+          
         }})
 
-})
-
-      
-
-}
-
-     }
-
-     
-  
-}
+})}}}
