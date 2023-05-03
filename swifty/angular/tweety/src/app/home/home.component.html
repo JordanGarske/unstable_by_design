@@ -22,9 +22,10 @@
       <!-- user name icon goes here -->
       <div class="main">
         <!-- this is the main area for anything(switch statment) -->
-        <app-taskboard *ngIf="select == 1"></app-taskboard>
-        <app-project-overview *ngIf="select == 2"></app-project-overview>
-        <app-task-view *ngIf="select == 3"></app-task-view>
+        <app-taskboard *ngIf="select === 1"></app-taskboard>
+        <app-project-overview *ngIf="select === 2"></app-project-overview>
+        <app-task-edit *ngIf="select === 3"></app-task-edit>
+
       </div>
     </div>
   </div>

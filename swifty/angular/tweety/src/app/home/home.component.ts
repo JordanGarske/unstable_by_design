@@ -10,18 +10,20 @@ import { Task } from '../actors/task';
 })
 export class HomeComponent implements OnInit {
   projects: Project[] = [];
+  select: number = 0; // this can be any : 1:taskboard / 2:overview / 3:task-edit / 4:
   constructor(private currentUser: CurrentUserStorageService) {}
   ngOnInit(): void {
     this.currentUser.getCurrentUserProjects().subscribe((projects) => {
       this.projects = projects;
     });
+    this.currentUser.getSelect$().subscribe(x => this.select = x)
   }
-  select: number = 0; // this can be any : 1:taskboard / 2:overview / 3:task-view / 4:
+  
   clickProject(project: Project) {
     this.currentUser.setCurrentProject$(project)
     
     // this.childComponent?.getProjectstatus();
-    this.select = 1;
+    this.currentUser.setSelect$(1)
     
   }
   clickNewProject() {}

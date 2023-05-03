@@ -18,7 +18,7 @@ import { DisplayDetailComponent } from './house/display-detail/display-detail.co
 import { TicketDisplayComponent } from './house/display-detail/ticket-display/ticket-display.component';
 import { CreateActorComponent } from './create-actor/create-actor.component';
 import { TaskDetailComponent } from './home/taskboard/task-detail/task-detail.component';
-import { TaskEditComponent } from './home/taskboard/task-edit/task-edit.component';
+import { TaskEditComponent } from './home/task-edit/task-edit.component';
 
 
 @NgModule({

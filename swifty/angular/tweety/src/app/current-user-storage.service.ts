@@ -26,6 +26,7 @@ export class CurrentUserStorageService {
   private currentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>({} as Project);
   private currentTask$: BehaviorSubject<Task> = new BehaviorSubject<Task>({} as Task);
   private projectStatus: Status[] = [];
+  private select: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
 
 
@@ -100,4 +101,13 @@ export class CurrentUserStorageService {
   public getCurrentTask$(): Observable<Task> {
     return this.currentTask$.asObservable();
   }
+
+  setSelect$(value: number) {
+    this.select.next(value);
+  }
+
+  public getSelect$(): Observable<number> {
+    return this.select.asObservable();
+  }
+
 }
