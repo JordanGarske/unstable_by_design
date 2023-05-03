@@ -18,7 +18,9 @@ export class HomeComponent implements OnInit {
       this.projects = projects;
     });
   }
-  displayScreen = 'overview'; // this can be any : taskboard / overview / task-view
-  clickProject(project: Project) {}
+  select: number = 0; // this can be any : 1:taskboard / 2:overview / 3:task-view / 4:
+  clickProject(project: Project) {
+    this.select = 1;
+  }
   clickNewProject() {}
 }
