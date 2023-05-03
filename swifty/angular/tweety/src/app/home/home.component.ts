@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, of } from 'rxjs';
-
-import { ProjectService } from '../services/project.service';
 import { Project } from '../actors/project';
 import { CurrentUserStorageService } from '../current-user-storage.service';
-import { TaskDetailComponent } from './taskboard/task-detail/task-detail.component';
-import { TaskboardComponent } from './taskboard/taskboard.component';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +8,6 @@ import { TaskboardComponent } from './taskboard/taskboard.component';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  @ViewChild(TaskboardComponent) childComponent?: TaskboardComponent;
   projects: Project[] = [];
   constructor(private currentUser: CurrentUserStorageService) {}
   ngOnInit(): void {

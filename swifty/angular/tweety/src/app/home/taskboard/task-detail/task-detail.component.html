@@ -1,11 +1,11 @@
 <div *ngIf="userTasks">
     <div class="list-group">
-      <a *ngFor="let item of userTasks" class="list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-between">
+      <div *ngFor="let item of userTasks" class="list-group-item list-group-item-action">
+        <button (click)="selectedTask(item);"class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{ item.Name }}</h5>
-        </div>
+        </button>
         <p class="mb-1">{{ item.Description }}</p>
-      </a>
+      </div>
     </div>
   </div>
   

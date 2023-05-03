@@ -29,14 +29,14 @@ export class TaskService {
   }
 
   /** PUT: update the task on the server */
-  updateProject(task: Task): Observable<any> {
+  updateTask(task: Task): Observable<any> {
     return this.http
       .put(this.tasksUrl, task, this.httpOptions)
       .pipe(catchError(this.handleError<any>('updateTask')));
   }
 
   /** POST: add a new task to the server */
-  addProject(task: Task): Observable<Task> {
+  addTask(task: Task): Observable<Task> {
     return this.http
       .post<Task>(this.tasksUrl, task, this.httpOptions)
       .pipe(catchError(this.handleError<Task>('addTask')));

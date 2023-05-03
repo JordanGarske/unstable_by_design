@@ -2,7 +2,8 @@
   <h1>{{ projectSelected }}</h1>
 </header>
 <body>
-  <div class="container">
+  
+  <div *ngIf="'taskDisplay' === switchPhrase" class="container">
     <div class="box" *ngIf="completedTasks != 0">
       <button class="add-button" (click)="addTask()"></button>
       <h2>Task to be done:</h2>
@@ -19,4 +20,5 @@
       <app-task-detail [certainTask]="notStartedTasks"></app-task-detail>
     </div>
   </div>
+  <app-task-edit *ngIf=" 'taskEdit'===switchPhrase"></app-task-edit>
 </body>

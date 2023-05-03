@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { Status } from 'src/app/actors/status';
 import { Task } from 'src/app/actors/task';
+import { CurrentUserStorageService } from 'src/app/current-user-storage.service';
 import { TaskService } from 'src/app/services/task.service';
 @Component({
   selector: 'app-task-detail',
@@ -10,9 +10,9 @@ import { TaskService } from 'src/app/services/task.service';
 export class TaskDetailComponent implements OnChanges {
   @Input() certainTask?: number;
   userTasks?:Task[]; 
-  constructor(private taskService: TaskService){}
+  constructor(private taskService: TaskService, private userStroage: CurrentUserStorageService){}
   ngOnChanges(): void {
-    console.log(this.certainTask);
+    console.log("cool");
     
     if(this.certainTask){
         this.taskService.getTasks().subscribe(items => {
@@ -20,5 +20,7 @@ export class TaskDetailComponent implements OnChanges {
         })
     }
   }
-   
+  selectedTask(item:Task): void{
+      this.userStroage.setCurrentTask$(item);
+  }
 }

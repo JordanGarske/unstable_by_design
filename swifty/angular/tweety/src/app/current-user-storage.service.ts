@@ -10,6 +10,7 @@ import { Project } from './actors/project';
 import { BehaviorSubject, Observable, map, mergeMap } from 'rxjs';
 import { Role } from './actors/role';
 import { Task } from './actors/task';
+import { Status } from './actors/status';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,7 @@ export class CurrentUserStorageService {
   // #tesing
   private currentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>({} as Project);
   private currentTask$: BehaviorSubject<Task> = new BehaviorSubject<Task>({} as Task);
+  private projectStatus: Status[] = [];
 
 
 
@@ -76,6 +78,14 @@ export class CurrentUserStorageService {
 
   public setCurrentTask(task: Task): void {
     this.currentTask = task;
+  }
+  
+  public getProjectStatusID(): Status[] {
+    return this.projectStatus;
+  }
+
+  public setProjectStatusID(statusID: Status[]): void {
+    this.projectStatus = statusID;
   }
   //you must subscription and to be safe after getting value resub to it 
   setCurrentProject$(value: Project) {
