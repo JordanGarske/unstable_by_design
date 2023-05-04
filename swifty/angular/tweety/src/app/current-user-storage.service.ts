@@ -72,6 +72,7 @@ export class CurrentUserStorageService {
   }
 
   getCurrentUserProjects(): Observable<Project[]> {
+    
     // return this.projectservice.getProjects().pipe(
     //   map((projects) => {
     //     return projects.filter((item) => {
