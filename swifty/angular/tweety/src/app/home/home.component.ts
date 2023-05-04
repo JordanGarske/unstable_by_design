@@ -39,4 +39,7 @@ export class HomeComponent implements OnInit {
     this.currentUser.setCurrentProject$(undefined);
     this.currentUser.setSelect$(11);
   }
+  delete(proj:Project){
+    this.projectService.deleteProject(proj.ProjectID).subscribe();
+  }
 }
