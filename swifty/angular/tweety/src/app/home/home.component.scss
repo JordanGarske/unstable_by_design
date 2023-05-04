@@ -14,7 +14,7 @@ button {
   width: 180px;
 }
 #new-project {
-  margin-top: 300px;
+  margin-top: 1rem;
 }
 .main {
   background-color: lightskyblue;
@@ -23,3 +23,10 @@ button {
 h1 {
   font-size: 37px;
 }
+img {
+  width: 135px;
+  height: 135px;
+}
+// img:hover {
+//   filter: opacity(0.8);
+// }

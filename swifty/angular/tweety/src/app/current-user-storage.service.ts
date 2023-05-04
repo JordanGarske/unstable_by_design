@@ -7,7 +7,15 @@ import { StatusService } from './services/status.service';
 import { UserService } from './services/user.service';
 import { User } from './actors/user';
 import { Project } from './actors/project';
-import { BehaviorSubject, Observable, combineLatest, filter, forkJoin, map, switchMap} from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  combineLatest,
+  filter,
+  forkJoin,
+  map,
+  switchMap,
+} from 'rxjs';
 import { Role } from './actors/role';
 import { Task } from './actors/task';
 import { Status } from './actors/status';
@@ -22,15 +30,21 @@ export class CurrentUserStorageService {
   private currentProject: Project = {} as Project;
   private currentTask: Task = {} as Task;
   // #tesing
-  private currentProject$: BehaviorSubject<Project | undefined> = new BehaviorSubject<Project | undefined>(undefined);
-  private currentTask$: BehaviorSubject<Task | undefined> = new BehaviorSubject<Task | undefined>(undefined);
-  private currentStatus$: BehaviorSubject<Status | undefined> = new BehaviorSubject<Status | undefined>(undefined);
+  private currentProject$: BehaviorSubject<Project | undefined> =
+    new BehaviorSubject<Project | undefined>(undefined);
+  private currentTask$: BehaviorSubject<Task | undefined> = new BehaviorSubject<
+    Task | undefined
+  >(undefined);
+  private currentStatus$: BehaviorSubject<Status | undefined> =
+    new BehaviorSubject<Status | undefined>(undefined);
   private projectStatus: Status[] = [];
   private select: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  private currentUser$: BehaviorSubject<User | undefined> = new BehaviorSubject<User | undefined>(undefined);
-  private currentRole$: BehaviorSubject<Role | undefined> = new BehaviorSubject<Role | undefined>(undefined);
-
-
+  private currentUser$: BehaviorSubject<User | undefined> = new BehaviorSubject<
+    User | undefined
+  >(undefined);
+  private currentRole$: BehaviorSubject<Role | undefined> = new BehaviorSubject<
+    Role | undefined
+  >(undefined);
 
   constructor(
     private userservice: UserService,
@@ -56,7 +70,7 @@ export class CurrentUserStorageService {
   getrole(): Role[] {
     return this.roles;
   }
-  
+
   getCurrentUserProjects(): Observable<Project[]> {
     // return this.projectservice.getProjects().pipe(
     //   map((projects) => {
@@ -67,9 +81,15 @@ export class CurrentUserStorageService {
     //         }}
     //         return false;});}));
 
-    return this.projectservice.getProjects().pipe(
-      map((projects) => projects.filter((item) => this.roles.some(role => role.ProjectID === item.ProjectID)))
-    );
+    return this.projectservice
+      .getProjects()
+      .pipe(
+        map((projects) =>
+          projects.filter((item) =>
+            this.roles.some((role) => role.ProjectID === item.ProjectID)
+          )
+        )
+      );
   }
 
   public getCurrentProject(): Project {
@@ -87,7 +107,7 @@ export class CurrentUserStorageService {
   public setCurrentTask(task: Task): void {
     this.currentTask = task;
   }
-  
+
   public getProjectStatusID(): Status[] {
     return this.projectStatus;
   }
@@ -95,7 +115,7 @@ export class CurrentUserStorageService {
   public setProjectStatusID(statusID: Status[]): void {
     this.projectStatus = statusID;
   }
-  //you must subscription and to be safe after getting value resub to it 
+  //you must subscription and to be safe after getting value resub to it
   setCurrentProject$(value: Project | undefined) {
     this.currentProject$.next(value);
   }
@@ -132,7 +152,7 @@ export class CurrentUserStorageService {
   public getCurrentRole$(): Observable<Role | undefined> {
     return this.currentRole$.asObservable();
   }
-
+  // this can be any : 1:taskboard / 2:overview / 3:task-edit / 4:
   setSelect$(value: number) {
     this.select.next(value);
   }
@@ -140,5 +160,4 @@ export class CurrentUserStorageService {
   public getSelect$(): Observable<number> {
     return this.select.asObservable();
   }
-
 }

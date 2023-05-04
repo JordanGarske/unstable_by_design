@@ -1,8 +1,19 @@
 <header>
-  <h1>{{ projectSelected }}</h1>
+  <label id="title">{{ projectSelected }}</label>
+  <button
+    class="btn btn-primary"
+    (click)="clickSettings()"
+    id="settings-icon"
+    id="settings-button"
+  >
+    <img
+      id="settings-icon"
+      src="../../../assets/resources/settings_wheel_icon.png"
+      alt="settings"
+    />
+  </button>
 </header>
 <body>
-  
   <div class="container">
     <div class="box" *ngIf="completedTasks != 0">
       <button class="add-button" (click)="addTask()"></button>
@@ -14,7 +25,7 @@
       <h2>Task in progress:</h2>
       <app-task-detail [certainTask]="inProgressTasks"></app-task-detail>
     </div>
-    <div class="box" *ngIf="notStartedTasks != 0" >
+    <div class="box" *ngIf="notStartedTasks != 0">
       <button class="add-button" (click)="addTask()"></button>
       <h2>Task Completed</h2>
       <app-task-detail [certainTask]="notStartedTasks"></app-task-detail>
