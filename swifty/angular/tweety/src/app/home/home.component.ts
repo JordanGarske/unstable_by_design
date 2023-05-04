@@ -25,12 +25,11 @@ export class HomeComponent implements OnInit {
     private projectService: ProjectService
   ) {}
   ngOnInit(): void {
+    this.currentUser.setProjects$()
     this.currentUser
       .getCurrentUserProjects()
-      .subscribe((x) => (this.projects = x)).unsubscribe();
-    this.currentUser.getSelect$().subscribe((x) => {this.select = x; this.currentUser
-      .getCurrentUserProjects()
-      .subscribe((x) => (this.projects = x)).unsubscribe();});
+      .subscribe((x) => {if(x)(this.projects = x)}).unsubscribe();
+    this.currentUser.getSelect$().subscribe((x) => this.select = x);
   }
 
   clickProject(project: Project) {
