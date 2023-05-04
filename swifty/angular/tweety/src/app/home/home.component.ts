@@ -27,8 +27,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser
       .getCurrentUserProjects()
-      .subscribe((x) => (this.projects = x));
-    this.currentUser.getSelect$().subscribe((x) => (this.select = x));
+      .subscribe((x) => (this.projects = x)).unsubscribe();
+    this.currentUser.getSelect$().subscribe((x) => {this.select = x; this.currentUser
+      .getCurrentUserProjects()
+      .subscribe((x) => (this.projects = x)).unsubscribe();});
   }
 
   clickProject(project: Project) {
