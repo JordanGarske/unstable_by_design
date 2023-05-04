@@ -5,18 +5,25 @@
         <img src="../../assets/resources/user-icon.png" alt="User Icon">
         <h1>Projects</h1>
         <div *ngFor="let project of projects">
-          <button
-            class="btn"
-            [ngStyle]="{ color: project.Color }"
-            (click)="clickProject(project)"
-          >
-            {{ project.Name }}
-          </button>
-          <button (click)="delete(project);" class="btn btn-danger">delete</button>
-        </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button
+              class="btn"
+              [ngStyle]="{ color: project.Color }"
+              (click)="clickProject(project)" >
+              {{ project.Name }}
+            </button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-danger float-right"  (click)="delete(project);" class="btn btn-danger">delete</button>
+            </div>
+          </div>
+
+       </div>
         <div id="new-project">
           <button class="btn" (click)="clickNewProject()">New Project</button>
         </div>
+        
       </div>
     </div>
     <div class="col-sm">

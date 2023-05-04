@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     private projectService: ProjectService
   ) {}
   ngOnInit(): void {
+    console.log("cool")
     this.currentUser.setProjects$()
     this.currentUser
       .getCurrentUserProjects()
