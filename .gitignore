@@ -1,4 +1,4 @@
-swifty/django/SwiftyCore/projectmanagement/__pycache__/*
+*.pyc
 swifty/django/SwiftyCore/projectmanagement/__pycache__/views.cpython-311.pyc
 swifty/django/SwiftyCore/SwiftyCore/__pycache__/settings.cpython-311.pyc
 swifty/django/SwiftyCore/db.sqlite3
