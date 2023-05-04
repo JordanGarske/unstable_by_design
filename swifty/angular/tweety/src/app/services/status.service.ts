@@ -29,14 +29,14 @@ export class StatusService {
 
   /** PUT: update the status on the server */
   updateStatus(status: Status): Observable<any> {
-    return this.http.put(this.statusesUrl, status, this.httpOptions).pipe(
+    return this.http.put(this.statusesUrl+status.StatusID+'/', status, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateStatus'))
     );
   }
 
   /** POST: add a new status to the server */
   addStatus(status: Status): Observable<Status> {
-    return this.http.post<Status>(this.statusesUrl+status.StatusID+'/', status, this.httpOptions).pipe(
+    return this.http.post<Status>(this.statusesUrl, status, this.httpOptions).pipe(
       catchError(this.handleError<Status>('addStatus'))
     );
   }

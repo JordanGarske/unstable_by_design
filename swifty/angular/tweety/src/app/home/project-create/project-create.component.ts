@@ -25,14 +25,14 @@ export class ProjectCreateComponent {
 
     createProject():void{
       this.projectService.addProject(this.newProject).subscribe(value =>{
-           this.roleService.addRoles({ Name: "employee",  Description: "This is the first role",  Color: "green", ProjectID: value.ProjectID, } as Role).subscribe(role => {
+           this.roleService.addRoles({ Name: "employee",  Description: "This is the first role",  Color: "green", ProjectID: value.ProjectID } as Role).subscribe(role => {
              this.user.Roles.push(role.RoleID);
             this.userService.updateUser(this.user).subscribe();
            })
   
-           this.statusService.addStatus({StatusID: 100, Name: "incompleted", Description: "this", ProjectID: value.ProjectID ,Tasks:[]}as Status).subscribe()
-           this.statusService.addStatus({ StatusID: 100, Name: "inprogress", Description: "this", ProjectID: value.ProjectID ,Tasks:[]} as Status).subscribe()
-           this.statusService.addStatus({StatusID: 100, Name: "done", Description: "this", ProjectID: value.ProjectID,Tasks:[]} as Status).subscribe()
+           this.statusService.addStatus({StatusID: 1, Name: "incompleted", Description: "this", ProjectID: value.ProjectID, Tasks:[] }as Status).subscribe()
+           this.statusService.addStatus({StatusID: 1, Name: "inprogress", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).subscribe()
+           this.statusService.addStatus({StatusID: 1, Name: "done", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).subscribe()
       });
     }
 }
