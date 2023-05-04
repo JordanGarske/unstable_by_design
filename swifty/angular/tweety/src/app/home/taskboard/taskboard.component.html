@@ -1,5 +1,5 @@
 <header>
-  <label id="title">{{ projectSelected }}</label>
+  <label id="title">{{project.Name}}</label>
   <button
     class="btn btn-primary"
     (click)="clickSettings()"
@@ -16,7 +16,7 @@
 <body>
   <div class="container">
     <div class="box" *ngFor="let status of statuses">
-      <button class="add-button" (click)="addTask()"></button>
+      <button class="add-button" (click)="addTask(status)"></button>
       <h2>{{ status.Name }}</h2>
       <div *ngFor="let task of status.Tasks">
         <app-task-detail [certainTask]="task"></app-task-detail>

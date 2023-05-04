@@ -12,11 +12,9 @@ import { StatusService } from 'src/app/services/status.service';
   styleUrls: ['./taskboard.component.scss'],
 })
 export class TaskboardComponent implements OnInit {
-  completedTasks: number = 0;
-  inProgressTasks: number = 0;
-  notStartedTasks: number = 0;
+  project: Project = {} as Project
   statuses: Status[] = [];
-  projectSelected = 'Temp Project A'; //import from settings
+  //import from settings
   constructor(
     private userStroage: CurrentUserStorageService,
     private statusService: StatusService
@@ -24,11 +22,20 @@ export class TaskboardComponent implements OnInit {
   ngOnInit(): void {
     this.userStroage.getCurrentProject$().subscribe((x) => {
       if (x) {
-        this.getProjectstatus(x);
+        this.project = x;
+        this.statusService.getStatuses().subscribe((stat) => {
+          let temp = stat.filter((s) => s.ProjectID === x.ProjectID);
+          this.statuses = temp;
+          // this.userStroage.getProjectStatusID().push(temp[0], temp[1], temp[1]);
+          this.userStroage.getCurrentTask$().subscribe((excute) => {
+            if (excute) this.userStroage.setSelect$(3);
+          });
+        });
       }
     });
   }
-  addTask() {
+  addTask(status: Status) {
+    this.userStroage.setCurrentStatus$(status)
     this.userStroage.setSelect$(10);
   }
   clickTask(task: Task) {}

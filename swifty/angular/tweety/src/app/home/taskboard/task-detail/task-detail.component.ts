@@ -15,7 +15,7 @@ export class TaskDetailComponent implements OnChanges {
     
     if(this.certainTask){
         this.taskService.getTasks().subscribe(items => {
-           this.userTasks = items.filter(item => item.StatusID === this.certainTask );
+           this.userTasks = items.filter(item => item.TaskID === this.certainTask );
         })
     }
   }

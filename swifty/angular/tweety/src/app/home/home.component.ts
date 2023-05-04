@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.currentUser.setProjects$()
     this.currentUser
       .getCurrentUserProjects()
-      .subscribe((x) => {if(x)(this.projects = x)}).unsubscribe();
+      .subscribe((x) => {if(x)(this.projects = x)})
     this.currentUser.getSelect$().subscribe((x) => this.select = x);
   }
 
