@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './member-overview.component.html',
   styleUrls: ['./member-overview.component.scss']
 })
-export class MemberOverviewComponent {
+export class MemberOverviewComponent  {
   id:number = 0 ;
   allUsers: User[]= [];
   constructor(private userService: UserService, private roleService: RoleService, private userStorage: CurrentUserStorageService ){ }
