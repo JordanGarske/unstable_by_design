@@ -19,7 +19,9 @@ export class TaskboardComponent implements OnInit {
    ngOnInit(): void {
       this.userStroage.getCurrentProject$().subscribe(x => {if(x){this.getProjectstatus(x)}})
   }
-  addTask() {}
+  addTask() {
+    this.userStroage.setSelect$(10)
+  }
   clickTask(task: Task) {}
   getProjectstatus(proj:Project): void{
     let temp: Status[];
