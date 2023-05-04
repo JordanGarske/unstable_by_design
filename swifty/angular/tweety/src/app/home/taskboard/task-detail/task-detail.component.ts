@@ -5,21 +5,26 @@ import { TaskService } from 'src/app/services/task.service';
 @Component({
   selector: 'app-task-detail',
   templateUrl: './task-detail.component.html',
-  styleUrls: ['./task-detail.component.scss']
+  styleUrls: ['./task-detail.component.scss'],
 })
 export class TaskDetailComponent implements OnChanges {
   @Input() certainTask?: number;
-  userTasks?:Task[]; 
-  constructor(private taskService: TaskService, private userStroage: CurrentUserStorageService){}
+  userTasks?: Task[];
+  constructor(
+    private taskService: TaskService,
+    private userStorage: CurrentUserStorageService
+  ) {}
   ngOnChanges(): void {
-    
-    if(this.certainTask){
-        this.taskService.getTasks().subscribe(items => {
-           this.userTasks = items.filter(item => item.TaskID === this.certainTask );
-        })
+    if (this.certainTask) {
+      this.taskService.getTasks().subscribe((items) => {
+        this.userTasks = items.filter(
+          (item) => item.TaskID === this.certainTask
+        );
+      });
     }
   }
-  selectedTask(item:Task): void{
-      this.userStroage.setCurrentTask$(item);
+  selectedTask(item: Task): void {
+    this.userStorage.setCurrentTask$(item);
   }
+  clickDeleteTask(task: Task) {}
 }

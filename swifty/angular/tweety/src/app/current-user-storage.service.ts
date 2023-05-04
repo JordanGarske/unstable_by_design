@@ -47,9 +47,8 @@ export class CurrentUserStorageService {
     Role | undefined
   >(undefined);
 
-  private projects$: BehaviorSubject<Project[] | undefined> = new BehaviorSubject<
-  Project[] | undefined
->(undefined);
+  private projects$: BehaviorSubject<Project[] | undefined> =
+    new BehaviorSubject<Project[] | undefined>(undefined);
 
   constructor(
     private userservice: UserService,
@@ -77,8 +76,10 @@ export class CurrentUserStorageService {
   }
 
   setProjects$() {
-    this.roleservice.getRoles().pipe(
-      map((roles) =>
+    this.roleservice
+      .getRoles()
+      .pipe(
+        map((roles) =>
           roles.filter((item) =>
             this.currentUser.Roles.some((role) => role === item.RoleID)
           )
@@ -97,7 +98,6 @@ export class CurrentUserStorageService {
   }
 
   getCurrentUserProjects(): Observable<Project[] | undefined> {
-    
     // return this.projectservice.getProjects().pipe(
     //   map((projects) => {
     //     return projects.filter((item) => {

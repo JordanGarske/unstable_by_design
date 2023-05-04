@@ -1,5 +1,5 @@
 <header>
-  <label id="title">{{project.Name}}</label>
+  <label id="title">{{ project.Name }}</label>
   <button
     class="btn btn-primary"
     (click)="clickSettings()"
@@ -22,7 +22,12 @@
         <app-task-detail [certainTask]="task"></app-task-detail>
       </div>
     </div>
-    <button id="add-status" class="btn btn-primary" (click)="clickAddStatus()">
+    <button
+      *ngIf="statuses.length < 3"
+      id="add-status"
+      class="btn btn-primary"
+      (click)="clickAddStatus()"
+    >
       +
     </button>
   </div>
