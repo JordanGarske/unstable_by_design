@@ -12,6 +12,7 @@ import {
   Observable,
   combineLatest,
   filter,
+  first,
   forkJoin,
   map,
   switchMap,
@@ -82,7 +83,8 @@ export class CurrentUserStorageService {
             this.currentUser.Roles.some((role) => role === item.RoleID)
           )
         )
-    ).subscribe(x => this.roles = x).unsubscribe()
+    ).pipe(first()).subscribe(x => this.roles = x)
+    
     this.projectservice
       .getProjects()
       .pipe(
@@ -91,7 +93,7 @@ export class CurrentUserStorageService {
             this.roles.some((role) => role.ProjectID === item.ProjectID)
           )
         )
-      ).subscribe(x => this.projects$.next(x))
+      ).pipe(first()).subscribe(x => this.projects$.next(x))
   }
 
   getCurrentUserProjects(): Observable<Project[] | undefined> {
