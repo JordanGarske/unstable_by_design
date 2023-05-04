@@ -23,6 +23,7 @@ export class TaskboardComponent implements OnInit {
     this.userStroage.setSelect$(10)
   }
   clickTask(task: Task) {}
+  // this needs to be more dynamic so more statuses can be added
   getProjectstatus(proj:Project): void{
     let temp: Status[];
     if(this.userStroage.getCurrentProject() ){

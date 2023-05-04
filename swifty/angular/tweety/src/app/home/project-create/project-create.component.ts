@@ -12,6 +12,8 @@ export class ProjectCreateComponent {
   constructor(private projectService: ProjectService) {}
 
   createProject():void{
-    this.projectService.addProject(this.project);
+    // create default statuses(you know what they are) and default roles (everyone, admin) for new project
+    // make current user admin (role that is created)
+    this.projectService.addProject(this.project).subscribe();
   } 
 }

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./member-overview.component.scss']
 })
 export class MemberOverviewComponent {
-
+  // List out members, a member detail component may be useful here
 }

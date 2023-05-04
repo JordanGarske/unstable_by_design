@@ -12,6 +12,6 @@ export class StatusCreateComponent {
   constructor(private statusService: StatusService) {}
 
   createStatus():void{
-    this.statusService.addStatus(this.status);
+    this.statusService.addStatus(this.status).subscribe();
   } 
 }

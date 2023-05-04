@@ -21,6 +21,6 @@ export class StatusEditComponent implements OnInit {
   }
   updateStatus():void{
     this.userStorage.getCurrentProject$().subscribe(x => {if(x) this.status.ProjectID = x.ProjectID})
-    this.statusService.updateStatus(this.status);
+    this.statusService.updateStatus(this.status).subscribe();
   } 
 }

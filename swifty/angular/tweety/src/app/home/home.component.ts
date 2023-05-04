@@ -27,10 +27,10 @@ export class HomeComponent implements OnInit {
   
   clickProject(project: Project) {
     this.currentUser.setCurrentProject$(project)
-    
-    // this.childComponent?.getProjectstatus();
     this.currentUser.setSelect$(1)
-    
   }
-  clickNewProject() {}
+  clickNewProject() {
+    this.currentUser.setCurrentProject$(undefined)
+    this.currentUser.setSelect$(11)
+  }
 }

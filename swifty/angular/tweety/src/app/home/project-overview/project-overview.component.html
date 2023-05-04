@@ -1,6 +1,6 @@
 <body>
   <header>
-    <h1>{{ projectSelected.Name }}</h1>
+    <h1>{{ project.Name }}</h1>
   </header>
   <div class="container">
     <app-project-sidebar></app-project-sidebar>
@@ -11,7 +11,7 @@
         <input
           type="text"
           id="title"
-          value="{{ projectSelected.Name }}"
+          value="{{ project.Name }}"
           required
         /><br /><br />
 
@@ -19,7 +19,7 @@
         <textarea
           id="description"
           name="description"
-          value="{{ projectSelected.Description }}"
+          value="{{ project.Description }}"
           required
         ></textarea
         ><br /><br />
@@ -30,7 +30,7 @@
             type="color"
             id="html5colorpicker"
             onchange="clickColor(0, -1, -1, 5)"
-            value="{{ projectSelected.Color }}"
+            value="{{ project.Color }}"
             style="width: 85%"
           />
         </div>
@@ -38,7 +38,7 @@
 
         <input type="hidden" id="box" name="box" value="" />
 
-        <button type="submit" (click)="clickSave()">Save Task</button>
+        <button type="submit" (click)="updateProject()">Save Task</button>
       </form>
     </div>
   </div>

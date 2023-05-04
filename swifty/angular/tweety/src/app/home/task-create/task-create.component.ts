@@ -12,6 +12,6 @@ export class TaskCreateComponent {
   constructor(private taskService: TaskService) {}
 
   createTask():void{
-    this.taskService.addTask(this.task);
+    this.taskService.addTask(this.task).subscribe();
   } 
 }

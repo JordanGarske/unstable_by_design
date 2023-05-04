@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./role-overview.component.scss']
 })
 export class RoleOverviewComponent {
-
+  // Need to list roles out for selection here,
+  // detail component mey be helpful
 }

@@ -22,6 +22,6 @@ export class RoleEditComponent implements OnInit {
   updateRole():void{
     this.userStorage.getCurrentProject$().subscribe(x => {if(x) this.role.ProjectID = x.ProjectID})
     // Implement the ability to add users
-    this.roleService.updateRole(this.role);
+    this.roleService.updateRole(this.role).subscribe();
   } 
 }
