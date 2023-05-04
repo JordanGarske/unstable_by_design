@@ -23,7 +23,7 @@ export class ProjectService {
 
   /** GET Project by id. Will 404 if id not found */
   getProjectById(id: number): Observable<Project> {
-    const url = `${this.projectsUrl}/${id}`;
+    const url = `${this.projectsUrl}${id}`;
     return this.http
       .get<Project>(url)
       .pipe(catchError(this.handleError<Project>(`getProjectById id=${id}`)));
@@ -45,7 +45,7 @@ export class ProjectService {
 
   /** DELETE: delete the project from the server */
   deleteProject(id: number): Observable<Project> {
-    const url = `${this.projectsUrl}/${id}`;
+    const url = `${this.projectsUrl}${id}`;
 
     return this.http
       .delete<Project>(url, this.httpOptions)
@@ -59,7 +59,7 @@ export class ProjectService {
       return of([]);
     }
     return this.http
-      .get<Project[]>(`${this.projectsUrl}/?Name=${term}`)
+      .get<Project[]>(`${this.projectsUrl}?Name=${term}`)
       .pipe(catchError(this.handleError<Project[]>('searchProjects', [])));
   }
 

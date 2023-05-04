@@ -21,7 +21,7 @@ export class StatusService {
 
   /** GET status by id. Will 404 if id not found */
   getStatusById(id: number): Observable<Status> {
-    const url = `${this.statusesUrl}/${id}`;
+    const url = `${this.statusesUrl}${id}`;
     return this.http.get<Status>(url).pipe(
       catchError(this.handleError<Status>(`getStatusById id=${id}`))
     );
@@ -43,7 +43,7 @@ export class StatusService {
 
   /** DELETE: delete the status from the server */
   deleteStatus(id: number): Observable<Status> {
-    const url = `${this.statusesUrl}/${id}`;
+    const url = `${this.statusesUrl}${id}`;
 
     return this.http.delete<Status>(url, this.httpOptions).pipe(
       catchError(this.handleError<Status>('deleteStatus'))
@@ -56,7 +56,7 @@ export class StatusService {
       // if not search term, return empty status array.
       return of([]);
     }
-    return this.http.get<Status[]>(`${this.statusesUrl}/?Name=${term}`).pipe(
+    return this.http.get<Status[]>(`${this.statusesUrl}?Name=${term}`).pipe(
       catchError(this.handleError<Status[]>('searchStatuses', []))
     );
   }

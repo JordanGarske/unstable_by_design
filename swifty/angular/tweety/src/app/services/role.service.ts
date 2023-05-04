@@ -21,7 +21,7 @@ export class RoleService {
 
   /** GET role by id. Will 404 if id not found */
   getRoleById(id: number): Observable<Role> {
-    const url = `${this.rolesUrl}/${id}`;
+    const url = `${this.rolesUrl}${id}`;
     return this.http
       .get<Role>(url)
       .pipe(catchError(this.handleError<Role>(`getRoleById id=${id}`)));
@@ -43,7 +43,7 @@ export class RoleService {
 
   /** DELETE: delete the role from the server */
   deleteRoles(id: number): Observable<Role> {
-    const url = `${this.rolesUrl}/${id}`;
+    const url = `${this.rolesUrl}${id}`;
 
     return this.http
       .delete<Role>(url, this.httpOptions)
@@ -57,7 +57,7 @@ export class RoleService {
       return of([]);
     }
     return this.http
-      .get<Role[]>(`${this.rolesUrl}/?Name=${term}`)
+      .get<Role[]>(`${this.rolesUrl}?Name=${term}`)
       .pipe(catchError(this.handleError<Role[]>('searchRoles', [])));
   }
 

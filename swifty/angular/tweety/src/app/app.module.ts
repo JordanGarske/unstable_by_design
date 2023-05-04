@@ -24,6 +24,10 @@ import { StatusEditComponent } from './home/status-edit/status-edit.component';
 import { RoleOverviewComponent } from './home/role-overview/role-overview.component';
 import { ProjectSidebarComponent } from './home/project-sidebar/project-sidebar.component';
 import { MemberOverviewComponent } from './home/member-overview/member-overview.component';
+import { StatusCreateComponent } from './home/status-create/status-create.component';
+import { RoleCreateComponent } from './home/role-create/role-create.component';
+import { TaskCreateComponent } from './home/task-create/task-create.component';
+import { ProjectCreateComponent } from './home/project-create/project-create.component';
 
 
 @NgModule({
@@ -47,6 +51,10 @@ import { MemberOverviewComponent } from './home/member-overview/member-overview.
     RoleOverviewComponent,
     ProjectSidebarComponent,
     MemberOverviewComponent,
+    StatusCreateComponent,
+    RoleCreateComponent,
+    TaskCreateComponent,
+    ProjectCreateComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],

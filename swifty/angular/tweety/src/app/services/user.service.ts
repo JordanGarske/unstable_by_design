@@ -21,7 +21,7 @@ export class UserService {
 
   /** GET User by id. Will 404 if id not found */
   getUserById(id: number): Observable<User> {
-    const url = `${this.usersUrl}/${id}`;
+    const url = `${this.usersUrl}${id}`;
     return this.http
       .get<User>(url)
       .pipe(catchError(this.handleError<User>(`getUserById id=${id}`)));
@@ -43,7 +43,7 @@ export class UserService {
 
   /** DELETE: delete the user from the server */
   deleteUser(id: number): Observable<User> {
-    const url = `${this.usersUrl}/${id}`;
+    const url = `${this.usersUrl}${id}`;
 
     return this.http
       .delete<User>(url, this.httpOptions)
@@ -57,7 +57,7 @@ export class UserService {
       return of([]);
     }
     return this.http
-      .get<User[]>(`${this.usersUrl}/?Username=${term}`)
+      .get<User[]>(`${this.usersUrl}?Username=${term}`)
       .pipe(catchError(this.handleError<User[]>('searchUsers', [])));
   }
 

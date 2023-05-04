@@ -22,7 +22,7 @@ export class TaskService {
 
   /** GET task by id. Will 404 if id not found */
   getTaskById(id: number): Observable<Task> {
-    const url = `${this.tasksUrl}/${id}`;
+    const url = `${this.tasksUrl}${id}`;
     return this.http
       .get<Task>(url)
       .pipe(catchError(this.handleError<Task>(`getTaskById id=${id}`)));
@@ -44,7 +44,7 @@ export class TaskService {
 
   /** DELETE: delete the task from the server */
   deleteProject(id: number): Observable<Task> {
-    const url = `${this.tasksUrl}/${id}`;
+    const url = `${this.tasksUrl}${id}`;
 
     return this.http
       .delete<Task>(url, this.httpOptions)
@@ -58,7 +58,7 @@ export class TaskService {
       return of([]);
     }
     return this.http
-      .get<Task[]>(`${this.tasksUrl}/?Name=${term}`)
+      .get<Task[]>(`${this.tasksUrl}?Name=${term}`)
       .pipe(catchError(this.handleError<Task[]>('searchTasks', [])));
   }
 

@@ -6,7 +6,7 @@ from .functions import attempt_json_deserialize
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['ProjectID', 'Name', 'Description', 'Color']
+        fields = ['ProjectID', 'Name', 'Description', 'Color', 'Roles', 'Statuses']
     
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:

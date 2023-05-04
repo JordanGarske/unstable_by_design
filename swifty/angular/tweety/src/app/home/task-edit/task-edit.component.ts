@@ -4,11 +4,8 @@ import { Task } from 'src/app/actors/task';
 import { CurrentUserStorageService } from 'src/app/current-user-storage.service';
 import { TaskService } from 'src/app/services/task.service';
 import { Project } from 'src/app/actors/project';
-import { ProjectService } from 'src/app/services/project.service';
 import { StatusService } from 'src/app/services/status.service';
-import { PrivacyLevel } from 'discord.js';
 import { forkJoin } from 'rxjs';
-
 
 @Component({
   selector: 'app-task-edit',
@@ -30,13 +27,10 @@ export class TaskEditComponent implements OnInit {
       this.userStroage.getProjectStatusID().filter( x => x !=undefined);
       this.userStroage.setCurrentTask$(undefined);
       }}).unsubscribe();
+
+
     this.userStroage.getCurrentProject$().subscribe(x => {if(x) this.project = x})
-    console.log(this.project)
-    this.statusService.getStatuses().subscribe(x => {
-      this.statusOptions = x;
-      this.statusOptions = this.statusOptions.filter(x => x.ProjectID === this.project.ProjectID)
-    })
-    console.log(this.statuses)
+    forkJoin(this.project.Statuses.map(x => this.statusService.getStatusById(x))).subscribe(x => this.statusOptions = x)
     
   }
   updateTask():void{
