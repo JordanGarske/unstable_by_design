@@ -36,7 +36,7 @@ export class StatusService {
 
   /** POST: add a new status to the server */
   addStatus(status: Status): Observable<Status> {
-    return this.http.post<Status>(this.statusesUrl, status, this.httpOptions).pipe(
+    return this.http.post<Status>(this.statusesUrl+status.StatusID+'/', status, this.httpOptions).pipe(
       catchError(this.handleError<Status>('addStatus'))
     );
   }

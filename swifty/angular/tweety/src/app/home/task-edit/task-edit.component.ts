@@ -34,8 +34,8 @@ export class TaskEditComponent implements OnInit {
     
   }
   updateTask():void{
-    this.taskService.updateTask(this.task);
-    
+    console.log(this.task)
+    this.taskService.updateTask(this.task).subscribe();
   }
   
 }

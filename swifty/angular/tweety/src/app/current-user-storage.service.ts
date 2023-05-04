@@ -7,7 +7,7 @@ import { StatusService } from './services/status.service';
 import { UserService } from './services/user.service';
 import { User } from './actors/user';
 import { Project } from './actors/project';
-import { BehaviorSubject, Observable, map, mergeMap, forkJoin, of } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, filter, forkJoin, map, switchMap} from 'rxjs';
 import { Role } from './actors/role';
 import { Task } from './actors/task';
 import { Status } from './actors/status';
@@ -20,7 +20,6 @@ export class CurrentUserStorageService {
   private roles: Role[] = [];
   //currrents
   private currentProject: Project = {} as Project;
-  private projects: Project[] = [];
   private currentTask: Task = {} as Task;
   // #tesing
   private currentProject$: BehaviorSubject<Project | undefined> = new BehaviorSubject<Project | undefined>(undefined);
@@ -41,6 +40,7 @@ export class CurrentUserStorageService {
 
   setUser(loginUser: User): void {
     this.currentUser = loginUser;
+    // this.currentUser.Roles.map(x => this.roleservice.getRoleById(x).subscribe(y => this.roles.push(y)))
     this.roleservice.getRoles().subscribe((x) => {
       let uniqueData = x
         .filter((value, index, self) => {
@@ -66,8 +66,10 @@ export class CurrentUserStorageService {
     //           return true;
     //         }}
     //         return false;});}));
-    forkJoin(this.roles.map(x => this.projectservice.getProjectById(x.ProjectID))).subscribe(x => this.projects = [... new Set(x)])
-    return of(this.projects)
+
+    return this.projectservice.getProjects().pipe(
+      map((projects) => projects.filter((item) => this.roles.some(role => role.ProjectID === item.ProjectID)))
+    );
   }
 
   public getCurrentProject(): Project {

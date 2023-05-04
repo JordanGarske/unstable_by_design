@@ -13,6 +13,7 @@ export class RoleService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   constructor(private http: HttpClient) {}
+
   getRoles(): Observable<Role[]> {
     return this.http
       .get<Role[]>(this.rolesUrl)
@@ -21,7 +22,7 @@ export class RoleService {
 
   /** GET role by id. Will 404 if id not found */
   getRoleById(id: number): Observable<Role> {
-    const url = `${this.rolesUrl}${id}`;
+    const url = `${this.rolesUrl}${id}/`;
     return this.http
       .get<Role>(url)
       .pipe(catchError(this.handleError<Role>(`getRoleById id=${id}`)));
@@ -30,7 +31,7 @@ export class RoleService {
   /** PUT: update the role on the server */
   updateRole(role: Role): Observable<any> {
     return this.http
-      .put(this.rolesUrl, role, this.httpOptions)
+      .put(this.rolesUrl+role.RoleID+'/', role, this.httpOptions)
       .pipe(catchError(this.handleError<any>('updateRole')));
   }
 

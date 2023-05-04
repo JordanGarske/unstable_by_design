@@ -13,9 +13,14 @@ class RoleSerializer(serializers.ModelSerializer):
         model = Role
         fields = '__all__'
         extra_kwargs = {'Users': {'required': False}}
+    
+    def create(self, validated_data):
+        return super().create(validated_data)
+    
+    def update(self, instance, validated_data):
+        return super().update(instance, validated_data)
 
 class UserSerializer(serializers.ModelSerializer):
-    # Roles = RoleSerializer(many=True, read_only=True)
     class Meta:
         model = User
         fields = ['UserID', 'Username', 'Password', 'Roles']
@@ -23,47 +28,32 @@ class UserSerializer(serializers.ModelSerializer):
 
     # def create(self, validated_data):
     #     request = self.context['request']
-
-    #     user_id = request.data.get('UserID')
-    #     user_id = attempt_json_deserialize(user_id, expect_type=int)
-    #     validated_data['userID'] = user_id
-
-    #     username = request.data.get('Username')
-    #     username = attempt_json_deserialize(username, expect_type=str)
-    #     validated_data['Username'] = username
-
-    #     password = request.data.get('Password')
-    #     password = attempt_json_deserialize(password, expect_type=str)
-    #     validated_data['Password'] = password
-
-    #     roles_data = request.data.get('Roles')
-    #     roles_data = attempt_json_deserialize(roles_data, expect_type=list)
-    #     validated_data['Roles'] = roles_data
-
-    #     instance = super().create(validated_data)
-
-    #     return instance
+    #     roles_data = validated_data.pop('Roles')
+    #     roles = []
+    #     user = User.objects.create(**validated_data)
+    #     for i in roles_data:
+    #         try:
+    #             p = Role.objects.create(**i)
+    #             roles.append(p)
+    #         except:
+    #             pass
+    #     user.Roles.set(roles)
+    #     return user
     
 
     # def update(self, instance, validated_data):
     #     request = self.context['request']
-
-    #     user_id = request.data.get('UserID')
-    #     user_id = attempt_json_deserialize(user_id, expect_type=str)
-    #     validated_data['UserID'] = user_id
-
-    #     box_data = request.data.get('box')
-    #     box_data = attempt_json_deserialize(box_data, expect_type=dict)
-    #     box = Box.objects.create(**box_data)
-    #     validated_data['box'] = box
-
-    #     toppings_data = request.data.get('toppings')
-    #     toppings_ids = attempt_json_deserialize(toppings_data, expect_type=list)
-    #     validated_data['toppings'] = toppings_ids
-
-    #     instance = super().update(instance, validated_data)
-
-    #     return instance
+    #     roles_data = validated_data.pop('Roles')
+    #     roles = []
+    #     user = User.objects.create(**validated_data)
+    #     for i in roles_data:
+    #         try:
+    #             p = Role.objects.create(**i)
+    #             roles.append(p)
+    #         except:
+    #             pass
+    #     user.Roles.update(roles)
+    #     return user
 
 class RoleToChannelSerializer(serializers.ModelSerializer):
     class Meta:

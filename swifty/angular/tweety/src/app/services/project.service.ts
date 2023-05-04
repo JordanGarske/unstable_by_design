@@ -23,7 +23,7 @@ export class ProjectService {
 
   /** GET Project by id. Will 404 if id not found */
   getProjectById(id: number): Observable<Project> {
-    const url = `${this.projectsUrl}${id}`;
+    const url = `${this.projectsUrl}${id}/`;
     return this.http
       .get<Project>(url)
       .pipe(catchError(this.handleError<Project>(`getProjectById id=${id}`)));
@@ -32,7 +32,7 @@ export class ProjectService {
   /** PUT: update the project on the server */
   updateProject(project: Project): Observable<any> {
     return this.http
-      .put(this.projectsUrl, project, this.httpOptions)
+      .put(this.projectsUrl+project.ProjectID+'/', project, this.httpOptions)
       .pipe(catchError(this.handleError<any>('updateProject')));
   }
 

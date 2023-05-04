@@ -30,7 +30,7 @@ export class UserService {
   /** PUT: update the user on the server */
   updateUser(user: User): Observable<any> {
     return this.http
-      .put(this.usersUrl, user, this.httpOptions)
+      .put(this.usersUrl+user.UserID+'/', user, this.httpOptions)
       .pipe(catchError(this.handleError<any>('updateUser')));
   }
 
