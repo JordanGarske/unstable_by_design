@@ -12,11 +12,6 @@ import { TaskboardComponent } from './home/taskboard/taskboard.component';
 import { TaskViewComponent } from './home/task-view/task-view.component';
 import { ProjectOverviewComponent } from './home/project-overview/project-overview.component';
 import { FormsModule } from '@angular/forms';
-import { HouseComponent } from './house/house.component';
-import { ProjectDetailComponent } from './house/project-detail/project-detail.component';
-import { DisplayDetailComponent } from './house/display-detail/display-detail.component';
-import { TicketDisplayComponent } from './house/display-detail/ticket-display/ticket-display.component';
-import { CreateActorComponent } from './create-actor/create-actor.component';
 import { TaskDetailComponent } from './home/taskboard/task-detail/task-detail.component';
 import { TaskEditComponent } from './home/task-edit/task-edit.component';
 import { RoleEditComponent } from './home/role-edit/role-edit.component';
@@ -39,11 +34,6 @@ import { ProjectCreateComponent } from './home/project-create/project-create.com
     TaskboardComponent,
     TaskViewComponent,
     ProjectOverviewComponent,
-    HouseComponent,
-    ProjectDetailComponent,
-    DisplayDetailComponent,
-    TicketDisplayComponent,
-    CreateActorComponent,
     TaskDetailComponent,
     TaskEditComponent,
     RoleEditComponent,

@@ -1,2 +1,4 @@
-
+<div *ngFor="let user of allUsers">
+    <button (click)="selectedUser(user)">{{user.UserID}}</button>
+</div>
 <app-project-sidebar></app-project-sidebar>

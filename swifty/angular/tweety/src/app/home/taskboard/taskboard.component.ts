@@ -15,6 +15,7 @@ export class TaskboardComponent implements OnInit {
   completedTasks: number = 0;
   inProgressTasks: number = 0;
   notStartedTasks: number = 0;
+  statuses: Status[] = [];
   projectSelected = 'Temp Project A'; //import from settings
   constructor(
     private userStroage: CurrentUserStorageService,
@@ -37,10 +38,8 @@ export class TaskboardComponent implements OnInit {
     if (this.userStroage.getCurrentProject()) {
       this.statusService.getStatuses().subscribe((stat) => {
         temp = stat.filter((s) => s.ProjectID === proj.ProjectID);
-        this.completedTasks = temp[1].StatusID;
-        this.inProgressTasks = temp[1].StatusID;
-        this.notStartedTasks = temp[0].StatusID;
-        this.userStroage.getProjectStatusID().push(temp[0], temp[1], temp[1]);
+        this.statuses = temp;
+        // this.userStroage.getProjectStatusID().push(temp[0], temp[1], temp[1]);
         this.userStroage.getCurrentTask$().subscribe((excute) => {
           if (excute) this.userStroage.setSelect$(3);
         });
@@ -49,5 +48,8 @@ export class TaskboardComponent implements OnInit {
   }
   clickSettings() {
     this.userStroage.setSelect$(2);
+  }
+  clickAddStatus() {
+    this.userStroage.setSelect$(9);
   }
 }

@@ -1,11 +1,24 @@
 <div *ngIf="userTasks">
-    <div class="list-group">
-      <div *ngFor="let item of userTasks" class="list-group-item list-group-item-action">
-        <button (click)="selectedTask(item);"class="d-flex w-100 justify-content-between">
+  <div class="list-group">
+    <div
+      *ngFor="let item of userTasks"
+      class="list-group-item list-group-item-action"
+      (click)="selectedTask(item)"
+    >
+      <div class="row">
+        <div class="col-sm">
           <h5 class="mb-1">{{ item.Name }}</h5>
-        </button>
+        </div>
+        <div class="col-sm-4">
+          <button class="btn btn-danger">
+            <img
+              src="../../../../assets/resources/trash-can.png"
+              alt="delete"
+            />
+          </button>
+        </div>
         <p class="mb-1">{{ item.Description }}</p>
       </div>
     </div>
   </div>
-  
+</div>
