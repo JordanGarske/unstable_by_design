@@ -7,5 +7,4 @@ export interface Role {
   Description: string;
   Color: string;
   ProjectID: number;
-  Users: number[];
 }
