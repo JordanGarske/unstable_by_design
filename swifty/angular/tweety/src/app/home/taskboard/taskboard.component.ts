@@ -12,7 +12,7 @@ import { StatusService } from 'src/app/services/status.service';
   styleUrls: ['./taskboard.component.scss'],
 })
 export class TaskboardComponent implements OnInit {
-  project: Project = {} as Project
+  project: Project = {} as Project;
   statuses: Status[] = [];
   //import from settings
   constructor(
@@ -35,7 +35,7 @@ export class TaskboardComponent implements OnInit {
     });
   }
   addTask(status: Status) {
-    this.userStroage.setCurrentStatus$(status)
+    this.userStroage.setCurrentStatus$(status);
     this.userStroage.setSelect$(10);
   }
   clickTask(task: Task) {}
