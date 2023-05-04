@@ -16,15 +16,7 @@ export class ProjectOverviewComponent {
     Channels: [],
     Statuses: [],
   }; //get from settings
-  clickOverview() {
-    console.log('clickOverview');
-  }
-  clickRoles() {
-    console.log('clickRoles');
-  }
-  clickMembers() {
-    console.log('clickMembers');
-  }
+  
   clickSave() {
     console.log('clickSave');
   }

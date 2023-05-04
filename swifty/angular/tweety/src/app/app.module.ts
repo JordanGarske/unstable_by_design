@@ -23,6 +23,7 @@ import { RoleEditComponent } from './home/role-edit/role-edit.component';
 import { StatusEditComponent } from './home/status-edit/status-edit.component';
 import { RoleOverviewComponent } from './home/role-overview/role-overview.component';
 import { ProjectSidebarComponent } from './home/project-sidebar/project-sidebar.component';
+import { MemberOverviewComponent } from './home/member-overview/member-overview.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ProjectSidebarComponent } from './home/project-sidebar/project-sidebar.
     StatusEditComponent,
     RoleOverviewComponent,
     ProjectSidebarComponent,
+    MemberOverviewComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],
