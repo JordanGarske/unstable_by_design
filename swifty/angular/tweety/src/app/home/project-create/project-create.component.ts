@@ -6,6 +6,8 @@ import { ProjectService } from 'src/app/services/project.service';
 import { RoleService } from 'src/app/services/role.service';
 import { StatusService } from 'src/app/services/status.service';
 import { UserService } from 'src/app/services/user.service';
+import { Status } from 'src/app/actors/status';
+import { Role } from 'src/app/actors/role';
 
 @Component({
   selector: 'app-project-create',
@@ -22,14 +24,19 @@ export class ProjectCreateComponent {
 
   createProject():void{
     this.projectService.addProject(this.newProject).subscribe(value =>{
-         this.roleService.addRoles({  RoleID: 1, Name: "employee", Description: "This is the first role", Color: "green", ProjectID: value.ProjectID,
-         }).subscribe(role => {
+         this.roleService.addRoles(
+          {
+            Name: "employee", 
+            Description: "This is the first role", 
+            Color: "green", 
+            ProjectID: value.ProjectID,
+         } as Role).subscribe(role => {
            this.user.Roles.push(role.RoleID);
-          this.userService.updateUser(this.user);
+          this.userService.updateUser(this.user).subscribe();
          })
-         this.statusService.addStatus({ StatusID: 1, Name: "incompleted", Description: "this", ProjectID: this.newProject.ProjectID })
-         this.statusService.addStatus({ StatusID: 1, Name: "inprogress", Description: "this", ProjectID: this.newProject.ProjectID })
-         this.statusService.addStatus({ StatusID: 1, Name: "done", Description: "this", ProjectID: this.newProject.ProjectID })
+         this.statusService.addStatus({Name: "incompleted", Description: "this", ProjectID: this.newProject.ProjectID} as Status)
+         this.statusService.addStatus({Name: "inprogress", Description: "this", ProjectID: this.newProject.ProjectID} as Status)
+         this.statusService.addStatus({Name: "done", Description: "this", ProjectID: this.newProject.ProjectID} as Status)
     });
   } 
 }

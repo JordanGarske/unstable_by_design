@@ -73,7 +73,7 @@ class MessageSerializer(serializers.ModelSerializer):
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Status
-        fields = ['StatusID', 'Name', 'Description', 'ProjectID']
+        fields = ['StatusID', 'Name', 'Description', 'ProjectID', 'Tasks']
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:

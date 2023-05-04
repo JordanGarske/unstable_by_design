@@ -5,4 +5,5 @@ export interface Status {
   Name: string;
   Description: string;
   ProjectID: number;
+  Tasks: number[];
 }
