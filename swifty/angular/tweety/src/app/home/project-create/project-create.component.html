@@ -1,1 +1,20 @@
-<p>project-create works!</p>
+<div class="container">
+    <h2>Create New Project</h2>
+      <div class="form-group">
+        <label for="project-name">Name:</label>
+        <input type="text" class="form-control" id="project-name" [(ngModel)]="newProject.Name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="project-desc">Description:</label>
+        <textarea class="form-control" id="project-desc" [(ngModel)]="newProject.Description" name="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="project-color">Color:</label>
+        <input type="text" class="form-control" id="project-color" [(ngModel)]="newProject.Color" name="color">
+      </div>
+      <div class="form-group">
+        <label for="project-id">ProjectID:</label>
+        <input type="number" class="form-control" id="project-id" [(ngModel)]="newProject.ProjectID" name="projectId">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="createProject()">Create Project</button>
+  </div>
