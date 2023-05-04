@@ -7,24 +7,20 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ['ProjectID', 'Name', 'Description', 'Color', 'Roles', 'Statuses']
-    
+        extra_kwargs = {'ProjectID': {'required': False}}
+
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
         fields = '__all__'
-        extra_kwargs = {'Users': {'required': False}}
-    
-    def create(self, validated_data):
-        return super().create(validated_data)
-    
-    def update(self, instance, validated_data):
-        return super().update(instance, validated_data)
+        extra_kwargs = {'RoleID': {'required': False}}
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['UserID', 'Username', 'Password', 'Roles']
-        extra_kwargs = {'Roles': {'required': False}}
+        extra_kwargs = {'UserID': {'required': False}}
 
     # def create(self, validated_data):
     #     request = self.context['request']
@@ -74,6 +70,7 @@ class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Status
         fields = ['StatusID', 'Name', 'Description', 'ProjectID', 'Tasks']
+        extra_kwargs = {'StatusID': {'required': False}}
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
