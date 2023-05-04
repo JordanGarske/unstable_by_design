@@ -12,6 +12,7 @@
           >
             {{ project.Name }}
           </button>
+          <button (click)="delete(project);" class="btn btn-danger">delete</button>
         </div>
         <div id="new-project">
           <button class="btn" (click)="clickNewProject()">New Project</button>

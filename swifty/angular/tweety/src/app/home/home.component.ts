@@ -4,7 +4,7 @@ import { CurrentUserStorageService } from '../current-user-storage.service';
 import { Task } from '../actors/task';
 import { User } from '../actors/user';
 import { Role } from '../actors/role';
-import { forkJoin } from 'rxjs';
+import { filter, forkJoin } from 'rxjs';
 import { RoleService } from '../services/role.service';
 import { ProjectService } from '../services/project.service';
 
@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
     this.currentUser.setSelect$(11);
   }
   delete(proj:Project){
+    this.projects = this.projects.filter( proj => proj.ProjectID != proj.ProjectID )
     this.projectService.deleteProject(proj.ProjectID).subscribe();
   }
 }

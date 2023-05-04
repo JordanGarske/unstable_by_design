@@ -1,3 +1,16 @@
 swifty/django/SwiftyCore/projectmanagement/__pycache__/
 swifty/django/SwiftyCore/projectmanagement/__pycache__/views.cpython-311.pyc
 swifty/django/SwiftyCore/SwiftyCore/__pycache__/settings.cpython-311.pyc
+swifty/django/SwiftyCore/db.sqlite3
+swifty/django/SwiftyCore/db.sqlite3
+swifty/django/SwiftyCore/projectmanagement/__pycache__/__init__.cpython-311.pyc
+swifty/django/SwiftyCore/projectmanagement/__pycache__/admin.cpython-311.pyc
+swifty/django/SwiftyCore/projectmanagement/__pycache__/functions.cpython-311.pyc
+swifty/django/SwiftyCore/projectmanagement/__pycache__/models.cpython-311.pyc
+swifty/django/SwiftyCore/projectmanagement/__pycache__/serializers.cpython-311.pyc
+swifty/django/SwiftyCore/projectmanagement/migrations/__pycache__/0001_initial.cpython-311.pyc
+swifty/django/SwiftyCore/projectmanagement/migrations/__pycache__/0002_remove_channel_roles_alter_roletochannel_channelid_and_more.cpython-311.pyc
+swifty/django/SwiftyCore/projectmanagement/migrations/__pycache__/__init__.cpython-311.pyc
+swifty/django/SwiftyCore/SwiftyCore/__pycache__/__init__.cpython-311.pyc
+swifty/django/SwiftyCore/SwiftyCore/__pycache__/settings.cpython-311.pyc
+swifty/django/SwiftyCore/SwiftyCore/__pycache__/urls.cpython-311.pyc
