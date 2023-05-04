@@ -5,6 +5,7 @@ import { Status } from 'src/app/actors/status';
 import { Task } from 'src/app/actors/task';
 import { CurrentUserStorageService } from 'src/app/current-user-storage.service';
 import { StatusService } from 'src/app/services/status.service';
+
 @Component({
   selector: 'app-taskboard',
   templateUrl: './taskboard.component.html',
