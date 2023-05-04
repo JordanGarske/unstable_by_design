@@ -46,6 +46,10 @@ export class CurrentUserStorageService {
     Role | undefined
   >(undefined);
 
+  private projects$: BehaviorSubject<Project[] | undefined> = new BehaviorSubject<
+  Project[] | undefined
+>(undefined);
+
   constructor(
     private userservice: UserService,
     private projectservice: ProjectService,
@@ -71,7 +75,26 @@ export class CurrentUserStorageService {
     return this.roles;
   }
 
-  getCurrentUserProjects(): Observable<Project[]> {
+  setProjects$() {
+    this.roleservice.getRoles().pipe(
+      map((roles) =>
+          roles.filter((item) =>
+            this.currentUser.Roles.some((role) => role === item.RoleID)
+          )
+        )
+    ).subscribe(x => this.roles = x).unsubscribe()
+    this.projectservice
+      .getProjects()
+      .pipe(
+        map((projects) =>
+          projects.filter((item) =>
+            this.roles.some((role) => role.ProjectID === item.ProjectID)
+          )
+        )
+      ).subscribe(x => this.projects$.next(x))
+  }
+
+  getCurrentUserProjects(): Observable<Project[] | undefined> {
     
     // return this.projectservice.getProjects().pipe(
     //   map((projects) => {
@@ -82,15 +105,16 @@ export class CurrentUserStorageService {
     //         }}
     //         return false;});}));
 
-    return this.projectservice
-      .getProjects()
-      .pipe(
-        map((projects) =>
-          projects.filter((item) =>
-            this.roles.some((role) => role.ProjectID === item.ProjectID)
-          )
-        )
-      );
+    // return this.projectservice
+    //   .getProjects()
+    //   .pipe(
+    //     map((projects) =>
+    //       projects.filter((item) =>
+    //         this.roles.some((role) => role.ProjectID === item.ProjectID)
+    //       )
+    //     )
+    //   );
+    return this.projects$.asObservable();
   }
 
   public getCurrentProject(): Project {

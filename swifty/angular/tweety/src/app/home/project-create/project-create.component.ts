@@ -34,5 +34,7 @@ export class ProjectCreateComponent {
            this.statusService.addStatus({StatusID: 1, Name: "inprogress", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).subscribe()
            this.statusService.addStatus({StatusID: 1, Name: "done", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).subscribe()
       });
+      this.userStorage.setProjects$()
     }
+
 }
