@@ -19,7 +19,7 @@ export class RoleEditComponent implements OnInit {
         this.userStorage.setCurrentRole$(undefined);
       }}).unsubscribe();
   }
-  updateStatus():void{
+  updateRole():void{
     this.userStorage.getCurrentProject$().subscribe(x => {if(x) this.role.ProjectID = x.ProjectID})
     // Implement the ability to add users
     this.roleService.updateRole(this.role);
