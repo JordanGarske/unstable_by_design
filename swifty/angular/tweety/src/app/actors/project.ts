@@ -8,6 +8,5 @@ export interface Project {
   Description: string;
   Color: string;
   Roles: number[];
-  Channels: number[];
   Statuses: number[];
 }

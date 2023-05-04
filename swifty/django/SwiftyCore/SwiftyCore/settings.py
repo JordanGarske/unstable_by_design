@@ -78,7 +78,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'SwiftyCore.wsgi.application'
-
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
