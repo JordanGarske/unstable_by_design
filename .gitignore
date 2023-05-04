@@ -14,3 +14,4 @@ swifty/django/SwiftyCore/projectmanagement/migrations/__pycache__/__init__.cpyth
 swifty/django/SwiftyCore/SwiftyCore/__pycache__/__init__.cpython-311.pyc
 swifty/django/SwiftyCore/SwiftyCore/__pycache__/settings.cpython-311.pyc
 swifty/django/SwiftyCore/SwiftyCore/__pycache__/urls.cpython-311.pyc
+swifty/django/SwiftyCore/db.sqlite3
