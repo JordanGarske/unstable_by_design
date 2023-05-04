@@ -15,20 +15,13 @@
 </header>
 <body>
   <div class="container">
-    <div class="box" *ngIf="completedTasks != 0">
+    <div class="box" *ngFor="let status of statuses">
       <button class="add-button" (click)="addTask()"></button>
-      <h2>Task to be done:</h2>
-      <app-task-detail [certainTask]="completedTasks"></app-task-detail>
+      <h2>{{ status.Name }}</h2>
+      <div *ngFor="let task of status.Tasks">
+        <app-task-detail [certainTask]="task"></app-task-detail>
+      </div>
     </div>
-    <div *ngIf="inProgressTasks != 0" class="box">
-      <button class="add-button" (click)="addTask()"></button>
-      <h2>Task in progress:</h2>
-      <app-task-detail [certainTask]="inProgressTasks"></app-task-detail>
-    </div>
-    <div class="box" *ngIf="notStartedTasks != 0">
-      <button class="add-button" (click)="addTask()"></button>
-      <h2>Task Completed</h2>
-      <app-task-detail [certainTask]="notStartedTasks"></app-task-detail>
-    </div>
+    <button id="add-status" class="btn btn-primary" (click)="clickAddStatus()">+</button>
   </div>
 </body>
