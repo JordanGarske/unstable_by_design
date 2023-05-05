@@ -18,21 +18,38 @@
     <div class="box" *ngFor="let status of statuses">
       <h2>{{ status.Name }}</h2>
       <div class="btn-group">
-        <button class="col remove-status btn btn-danger" (click)="deleteStatus(status)">Delete</button>
-        <button class="col btn btn-success" (click)="clickEditStatus(status)">Edit</button>
-        <button class="col btn btn-primary add-button" (click)="addTask(status)">+</button>
+        <button
+          class="col remove-status btn btn-danger"
+          (click)="deleteStatus(status)"
+        >
+          Delete
+        </button>
+        <button class="col btn btn-success" (click)="clickEditStatus(status)">
+          Edit
+        </button>
+        <button
+          class="col btn btn-primary add-button"
+          (click)="addTask(status)"
+        >
+          +
+        </button>
       </div>
       <div class="row btn-group" *ngFor="let task of status.Tasks">
-        <app-task-detail class="btn col-lg-10" [certainTask]="task"></app-task-detail>
+        <app-task-detail
+          class="btn col-lg-10"
+          [certainTask]="task"
+        ></app-task-detail>
         <button class="btn btn-danger col-sm-2" (click)="clickDeleteTask(task)">
-            <img class = "img-fluid"
-              src="../../../../assets/resources/trash-can.png"
-              alt="delete"
-            />
+          <img
+            class="img-fluid"
+            src="../../../../assets/resources/trash-can.png"
+            alt="delete"
+          />
         </button>
       </div>
     </div>
     <button
+      *ngIf="statuses.length < 3"
       id="add-status"
       class="btn btn-primary"
       (click)="clickAddStatus()"
