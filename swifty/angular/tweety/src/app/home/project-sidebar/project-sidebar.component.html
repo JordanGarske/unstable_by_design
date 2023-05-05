@@ -1,19 +1,18 @@
-<div class="sidebar">
-    <h2>Settings</h2>
-    <ul>
-      <div class="card">
-        <h5 class="card-title" (click)="clickOverview()">Overview</h5>
-      </div>
-    </ul>
-    <ul>
-      <div class="card">
-        <h5 class="card-title" (click)="clickRoles()">Roles</h5>
-      </div>
-    </ul>
-    <ul>
-      <div class="card">
-        <h5 class="card-title" (click)="clickMembers()">Members</h5>
-
-              </div>
-    </ul>
-  </div>
+<div class="sidebar" id="main">
+  <h2>Settings</h2>
+  <ul>
+    <div id="card" class="card" (click)="clickOverview()">
+      <h5 class="card-title" (click)="clickOverview()">Overview</h5>
+    </div>
+  </ul>
+  <ul>
+    <div id="card" class="card" (click)="clickRoles()">
+      <h5 class="card-title" (click)="clickRoles()">Roles</h5>
+    </div>
+  </ul>
+  <ul>
+    <div id="card" class="card" (click)="clickMembers()">
+      <h5 class="card-title" (click)="clickMembers()">Members</h5>
+    </div>
+  </ul>
+</div>
