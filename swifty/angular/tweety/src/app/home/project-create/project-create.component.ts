@@ -33,11 +33,13 @@ export class ProjectCreateComponent {
     private roleService: RoleService,
     private statusService: StatusService
   ) {
-    this.userStorage.getCurrentUser$().pipe(first()).subscribe((x) => {
-      if (x) {
-        this.user = x;
+    this.userStorage.getCurrentUser$().pipe(tap(
+      (x) => {
+        if (x) {
+          this.user = x;
+        }
       }
-    });
+    ),first()).subscribe();
   }
 
   createProject(): void {
@@ -45,7 +47,7 @@ export class ProjectCreateComponent {
       .addProject(this.newProject)
       .pipe(
         take(1),
-        finalize(() => this.userStorage.setProjects$()),
+        finalize(() => {this.userStorage.setProjects$(); this.userStorage.setSelect$(1)}),
         map((value) => {
           this.roleService
             .addRoles({
@@ -91,7 +93,8 @@ export class ProjectCreateComponent {
             } as Status)
             .pipe(first())
             .subscribe();
-        })
+          this.userStorage.setCurrentProject$(value);
+        }),
       ).subscribe();
   }
 }
