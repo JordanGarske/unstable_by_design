@@ -10,8 +10,8 @@
       <div class="row py-3" *ngFor="let project of projects">
         <div class="btn-group-vertical">
           <button
-            class="btn btn-light"
-            [ngStyle]="{ color: project.Color }"
+            class="btn"
+            [ngStyle]="{ 'background-color': project.Color }"
             (click)="clickProject(project)"
           >
             {{ project.Name }}
