@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Project } from '../actors/project';
 import { CurrentUserStorageService } from '../current-user-storage.service';
 import { Task } from '../actors/task';
 import { User } from '../actors/user';
 import { Role } from '../actors/role';
-import { filter, forkJoin } from 'rxjs';
+import { first, tap } from 'rxjs';
 import { RoleService } from '../services/role.service';
 import { ProjectService } from '../services/project.service';
 
@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
     private projectService: ProjectService
   ) {}
   ngOnInit(): void {
-    console.log("cool")
     this.currentUser.setProjects$()
     this.currentUser
       .getCurrentUserProjects()
@@ -35,7 +34,7 @@ export class HomeComponent implements OnInit {
 
   clickProject(project: Project) {
     this.currentUser.setCurrentProject$(project);
-    this.currentUser.setProjects$()
+    this.currentUser.setProjects$();
     this.currentUser.setSelect$(1);
   }
   clickNewProject() {
@@ -43,7 +42,8 @@ export class HomeComponent implements OnInit {
     this.currentUser.setSelect$(11);
   }
   delete(proj:Project){
-    this.projects = this.projects.filter( pro => proj.ProjectID != pro.ProjectID )
-    this.projectService.deleteProject(proj.ProjectID).subscribe();
+    this.projectService.deleteProject(proj.ProjectID).pipe(first(),tap(_ => this.currentUser.setProjects$())).subscribe();
+    
+    this.currentUser.setSelect$(0);
   }
 }

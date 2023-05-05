@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Status } from 'src/app/actors/status';
 import { StatusService } from 'src/app/services/status.service';
 import { CurrentUserStorageService } from 'src/app/current-user-storage.service';
+import { first } from 'rxjs';
 
 
 @Component({
@@ -13,14 +14,13 @@ export class StatusEditComponent implements OnInit {
   status: Status = {} as Status;
   constructor(private statusService: StatusService, private userStorage: CurrentUserStorageService){}
   ngOnInit( ): void {
-    this.userStorage.getCurrentStatus$().subscribe(selected => {
+    this.userStorage.getCurrentStatus$().pipe(first()).subscribe(selected => {
       if(selected){
         this.status = selected;
-        this.userStorage.setCurrentStatus$(undefined);
-      }}).unsubscribe();
+      }})
   }
   updateStatus():void{
-    this.userStorage.getCurrentProject$().subscribe(x => {if(x) this.status.ProjectID = x.ProjectID})
-    this.statusService.updateStatus(this.status).subscribe();
+    this.userStorage.getCurrentProject$().pipe(first()).subscribe(x => {if(x) this.status.ProjectID = x.ProjectID})
+    this.statusService.updateStatus(this.status).pipe(first()).subscribe();
   } 
 }

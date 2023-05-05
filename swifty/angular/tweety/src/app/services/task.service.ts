@@ -43,7 +43,7 @@ export class TaskService {
   }
 
   /** DELETE: delete the task from the server */
-  deleteProject(id: number): Observable<Task> {
+  deleteTask(id: number): Observable<Task> {
     const url = `${this.tasksUrl}${id}`;
 
     return this.http

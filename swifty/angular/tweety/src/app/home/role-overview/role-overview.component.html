@@ -1,2 +1,23 @@
-<p>role-overview works!</p>
-<app-project-sidebar></app-project-sidebar>
+<body>
+    <label id="title">Roles</label>
+    <div class="container">
+        <app-project-sidebar></app-project-sidebar>
+        <div class="main">
+            <div class="card row py-3" *ngFor='let role of roles'>
+                <button class="btn col" (click)="clickSelectRole(role)">
+                    <h5 class="card-title">{{role.Name}}</h5>
+                    <p class="card-text">{{role.Description}}</p>
+                </button>
+                <button class="btn btn-danger col" (click)="clickDeleteRole(role)">
+                    Delete
+                </button>
+            </div>
+
+            <div class="card row py-3">
+                <button class="btn btn-primary col py-3" (click)="clickAddRole()">
+                    Create Role
+                </button>
+            </div>
+        </div>
+    </div>
+</body>

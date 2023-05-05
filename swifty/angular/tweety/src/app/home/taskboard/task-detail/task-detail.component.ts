@@ -26,5 +26,4 @@ export class TaskDetailComponent implements OnChanges {
   selectedTask(item: Task): void {
     this.userStorage.setCurrentTask$(item);
   }
-  clickDeleteTask(task: Task) {}
 }

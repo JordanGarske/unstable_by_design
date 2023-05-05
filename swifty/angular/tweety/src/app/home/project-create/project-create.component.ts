@@ -8,6 +8,7 @@ import { StatusService } from 'src/app/services/status.service';
 import { UserService } from 'src/app/services/user.service';
 import { Status } from 'src/app/actors/status';
 import { Role } from 'src/app/actors/role';
+import { first, tap } from 'rxjs';
 
 @Component({
   selector: 'app-project-create',
@@ -25,16 +26,16 @@ export class ProjectCreateComponent {
 
     createProject():void{
       this.projectService.addProject(this.newProject).subscribe(value =>{
-           this.roleService.addRoles({ Name: "employee",  Description: "This is the first role",  Color: "green", ProjectID: value.ProjectID } as Role).subscribe(role => {
-             this.user.Roles.push(role.RoleID);
+          this.roleService.addRoles({ Name: "employee",  Description: "This is the first role",  Color: "green", ProjectID: value.ProjectID } as Role).subscribe(role => {
+            this.user.Roles.push(role.RoleID);
             this.userService.updateUser(this.user).subscribe();
-           })
+          })
   
-           this.statusService.addStatus({StatusID: 1, Name: "incompleted", Description: "this", ProjectID: value.ProjectID, Tasks:[] }as Status).subscribe()
-           this.statusService.addStatus({StatusID: 1, Name: "inprogress", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).subscribe()
-           this.statusService.addStatus({StatusID: 1, Name: "done", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).subscribe()
+          this.statusService.addStatus({StatusID: 1, Name: "incompleted", Description: "this", ProjectID: value.ProjectID, Tasks:[] }as Status).subscribe()
+          this.statusService.addStatus({StatusID: 1, Name: "inprogress", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).subscribe()
+          this.statusService.addStatus({StatusID: 1, Name: "done", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).subscribe()
+          this.userStorage.setProjects$()
       });
-      this.userStorage.setProjects$()
     }
 
 }

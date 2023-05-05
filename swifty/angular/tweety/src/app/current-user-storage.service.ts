@@ -13,6 +13,7 @@ import {
   combineLatest,
   filter,
   first,
+  firstValueFrom,
   forkJoin,
   map,
   switchMap,
@@ -75,48 +76,28 @@ export class CurrentUserStorageService {
     return this.roles;
   }
 
-  setProjects$() {
-    this.roleservice
-      .getRoles()
-      .pipe(
-        map((roles) =>
-          roles.filter((item) =>
-            this.currentUser.Roles.some((role) => role === item.RoleID)
-          )
+  async setProjects$() {
+    const roles = await firstValueFrom(this.roleservice.getRoles().pipe(
+      map((roles) =>
+        roles.filter((item) =>
+          this.currentUser.Roles.some((role) => role === item.RoleID)
         )
-    ).pipe(first()).subscribe(x => this.roles = x)
-    
-    this.projectservice
-      .getProjects()
-      .pipe(
-        map((projects) =>
-          projects.filter((item) =>
-            this.roles.some((role) => role.ProjectID === item.ProjectID)
-          )
+      )
+    ))
+  
+    const projects = await firstValueFrom(this.projectservice.getProjects().pipe(
+      map((projects) =>
+        projects.filter((item) =>
+          roles.some((role) => role.ProjectID === item.ProjectID)
         )
-      ).pipe(first()).subscribe(x => this.projects$.next(x))
+      )
+    ));
+  
+    this.projects$.next(projects);
   }
-
-  getCurrentUserProjects(): Observable<Project[] | undefined> {
-    // return this.projectservice.getProjects().pipe(
-    //   map((projects) => {
-    //     return projects.filter((item) => {
-    //       for (let index = 0; index < this.roles.length; index++) {
-    //         if (this.roles[index].ProjectID === item.ProjectID) {
-    //           return true;
-    //         }}
-    //         return false;});}));
-
-    // return this.projectservice
-    //   .getProjects()
-    //   .pipe(
-    //     map((projects) =>
-    //       projects.filter((item) =>
-    //         this.roles.some((role) => role.ProjectID === item.ProjectID)
-    //       )
-    //     )
-    //   );
-    return this.projects$.asObservable();
+  
+  getCurrentUserProjects(): BehaviorSubject<Project[] | undefined> {
+    return this.projects$;
   }
 
   public getCurrentProject(): Project {

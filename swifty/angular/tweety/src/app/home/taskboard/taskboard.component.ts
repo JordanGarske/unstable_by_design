@@ -1,10 +1,12 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
+import { first, tap } from 'rxjs';
 import { Project } from 'src/app/actors/project';
 import { Role } from 'src/app/actors/role';
 import { Status } from 'src/app/actors/status';
 import { Task } from 'src/app/actors/task';
 import { CurrentUserStorageService } from 'src/app/current-user-storage.service';
 import { StatusService } from 'src/app/services/status.service';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-taskboard',
@@ -17,13 +19,14 @@ export class TaskboardComponent implements OnInit {
   //import from settings
   constructor(
     private userStroage: CurrentUserStorageService,
-    private statusService: StatusService
+    private statusService: StatusService,
+    private taskService: TaskService
   ) {}
   ngOnInit(): void {
-    this.userStroage.getCurrentProject$().subscribe((x) => {
+    this.userStroage.getCurrentProject$().pipe(first()).subscribe((x) => {
       if (x) {
         this.project = x;
-        this.statusService.getStatuses().subscribe((stat) => {
+        this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
           let temp = stat.filter((s) => s.ProjectID === x.ProjectID);
           this.statuses = temp;
           // this.userStroage.getProjectStatusID().push(temp[0], temp[1], temp[1]);
@@ -43,7 +46,7 @@ export class TaskboardComponent implements OnInit {
   getProjectstatus(proj: Project): void {
     let temp: Status[];
     if (this.userStroage.getCurrentProject()) {
-      this.statusService.getStatuses().subscribe((stat) => {
+      this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
         temp = stat.filter((s) => s.ProjectID === proj.ProjectID);
         this.statuses = temp;
         // this.userStroage.getProjectStatusID().push(temp[0], temp[1], temp[1]);
@@ -56,6 +59,28 @@ export class TaskboardComponent implements OnInit {
   clickSettings() {
     this.userStroage.setSelect$(2);
   }
+
+  clickDeleteTask(taskID: number) {
+    this.taskService.deleteTask(taskID).pipe(tap(_ => this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
+      let temp = stat.filter((s) => s.ProjectID === this.project.ProjectID);
+      this.statuses = temp;
+    })),first()).subscribe();
+    
+  }
+
+  deleteStatus(status: Status) {
+    this.statusService.deleteStatus(status.StatusID).pipe(first()).subscribe()
+    this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
+      let temp = stat.filter((s) => s.ProjectID === this.project.ProjectID);
+      this.statuses = temp;
+    })
+  }
+
+  clickEditStatus(status: Status){
+    this.userStroage.setCurrentStatus$(status)
+    this.userStroage.setSelect$(6)
+  }
+
   clickAddStatus() {
     this.userStroage.setSelect$(9);
   }
