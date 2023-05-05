@@ -38,9 +38,12 @@ export class MemberOverviewComponent  implements OnInit{
      if(!user.Tasks){
         user.Tasks = [];
      }
-       user.Tasks.push(this.id); 
+       user.Roles.push(this.id); 
       this.userService.updateUser(user).subscribe(x => this.userService.getUsers().subscribe(users => this.dividUser(users) ));
     }
   }
-   
+  deleteUser(user:User):void{
+    user.Roles = user.Roles.filter(role => role != this.id) ;
+    this.userService.updateUser(user).subscribe(x => this.userService.getUsers().subscribe(users => this.dividUser(users)));
+  }
 }
