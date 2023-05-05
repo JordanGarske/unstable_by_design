@@ -1,16 +1,35 @@
 <div class="container">
-    <div class="row">
-      <div class="col-lg-6 offset-lg-3">
-        <h2>Create Role</h2>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="role.Name" required>
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" rows="5" placeholder="Description" [(ngModel)]="role.Description" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" (click)="createRole();">Create Role</button>
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <h2>Create Role</h2>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Name"
+          [(ngModel)]="role.Name"
+          required
+        />
       </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          required
+          class="form-control"
+          id="description"
+          rows="5"
+          placeholder="Description"
+          [(ngModel)]="role.Description"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="createRole()">
+        Create Role
+      </button>
+      <p id="success" *ngIf="success">Success!</p>
     </div>
+  </div>
 </div>

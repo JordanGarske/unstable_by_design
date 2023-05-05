@@ -7,16 +7,32 @@ import { first } from 'rxjs';
 @Component({
   selector: 'app-role-create',
   templateUrl: './role-create.component.html',
-  styleUrls: ['./role-create.component.scss']
+  styleUrls: ['./role-create.component.scss'],
 })
 export class RoleCreateComponent {
-  role: Role = {} as Role;
-  constructor(private roleService: RoleService, private userStorage: CurrentUserStorageService) {}
+  role: Role = {
+    RoleID: 1,
+    Name: 'member',
+    Description: 'This is the Description',
+    Color: 'black',
+    ProjectID: 1,
+  };
+  success: boolean = false;
+  constructor(
+    private roleService: RoleService,
+    private userStorage: CurrentUserStorageService
+  ) {}
 
-  createRole():void{
-    this.userStorage.getCurrentProject$().pipe(first()).subscribe(x =>{if(x)this.role.ProjectID = x.ProjectID});
-    this.role.RoleID=1;
-    this.role.Color="#000000";
+  createRole(): void {
+    this.userStorage
+      .getCurrentProject$()
+      .pipe(first())
+      .subscribe((x) => {
+        if (x) this.role.ProjectID = x.ProjectID;
+      });
+    this.role.RoleID = 1;
+    this.role.Color = '#000000';
     this.roleService.addRoles(this.role).pipe(first()).subscribe();
-  } 
+    this.success = true;
+  }
 }

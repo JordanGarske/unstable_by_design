@@ -10,33 +10,48 @@ import { first, forkJoin } from 'rxjs';
 @Component({
   selector: 'app-task-edit',
   templateUrl: './task-edit.component.html',
-  styleUrls: ['./task-edit.component.scss']
+  styleUrls: ['./task-edit.component.scss'],
 })
 export class TaskEditComponent implements OnInit {
   selectedStatus: Status = {} as Status;
-  task:Task = {} as Task;
+  task: Task = {} as Task;
   project: Project = {} as Project;
   statusOptions: Status[] = [];
   statuses: Status[] = [];
-  constructor(private taskService: TaskService, private statusService: StatusService,private userStroage: CurrentUserStorageService){}
-  ngOnInit( ): void {
-    this.userStroage.getCurrentTask$().pipe(first()).subscribe(selected => {
-      
-      if(selected){
-        this.task = selected;
-        this.userStroage.getProjectStatusID().filter( x => x !=undefined);
-        this.userStroage.setCurrentTask$(undefined);
-      }});
+  success: boolean = false;
+  constructor(
+    private taskService: TaskService,
+    private statusService: StatusService,
+    private userStroage: CurrentUserStorageService
+  ) {}
+  ngOnInit(): void {
+    this.userStroage
+      .getCurrentTask$()
+      .pipe(first())
+      .subscribe((selected) => {
+        if (selected) {
+          this.task = selected;
+          this.userStroage.getProjectStatusID().filter((x) => x != undefined);
+          this.userStroage.setCurrentTask$(undefined);
+        }
+      });
 
-
-    this.userStroage.getCurrentProject$().pipe(first()).subscribe(x => {if(x) this.project = x})
-    forkJoin(this.project.Statuses.map(x => this.statusService.getStatusById(x))).pipe(first()).subscribe(x => this.statusOptions = x)
-    
+    this.userStroage
+      .getCurrentProject$()
+      .pipe(first())
+      .subscribe((x) => {
+        if (x) this.project = x;
+      });
+    forkJoin(
+      this.project.Statuses.map((x) => this.statusService.getStatusById(x))
+    )
+      .pipe(first())
+      .subscribe((x) => (this.statusOptions = x));
   }
 
-  updateTask():void{
-    console.log(this.task)
+  updateTask(): void {
+    console.log(this.task);
     this.taskService.updateTask(this.task).pipe(first()).subscribe();
+    this.success = true;
   }
-  
 }

@@ -6,15 +6,22 @@ import { StatusService } from 'src/app/services/status.service';
 @Component({
   selector: 'app-status-create',
   templateUrl: './status-create.component.html',
-  styleUrls: ['./status-create.component.scss']
+  styleUrls: ['./status-create.component.scss'],
 })
 export class StatusCreateComponent {
   status: Status = {} as Status;
-  constructor(private statusService: StatusService, private currentUserStorage: CurrentUserStorageService) {}
+  success: boolean = false;
+  constructor(
+    private statusService: StatusService,
+    private currentUserStorage: CurrentUserStorageService
+  ) {}
 
-  createStatus():void{
-    this.currentUserStorage.getCurrentProject$().subscribe(x => {if(x)this.status.ProjectID = x.ProjectID})
-    this.status.Tasks = []
+  createStatus(): void {
+    this.currentUserStorage.getCurrentProject$().subscribe((x) => {
+      if (x) this.status.ProjectID = x.ProjectID;
+    });
+    this.status.Tasks = [];
     this.statusService.addStatus(this.status).subscribe();
-  } 
+    this.success = true;
+  }
 }
