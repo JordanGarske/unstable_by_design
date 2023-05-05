@@ -34,10 +34,6 @@ export class TaskEditComponent implements OnInit {
     
   }
 
-  updateStatusID(e: any){
-    this.task.StatusID = Number.parseInt(e.target.value)
-  }
-
   updateTask():void{
     console.log(this.task)
     this.taskService.updateTask(this.task).pipe(first()).subscribe();

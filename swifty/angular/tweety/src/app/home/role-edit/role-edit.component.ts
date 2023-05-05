@@ -58,9 +58,18 @@ export class RoleEditComponent implements OnInit {
     ).subscribe(users => this.users = users);
   }
 
+  compareFn(c1: User, c2: User): boolean {
+    return c1 && c2 ? c1.UserID === c2.UserID : c1 === c2
+  }
+
   updateRole():void{
-    this.userStorage.getCurrentProject$().subscribe(x => {if(x) this.role.ProjectID = x.ProjectID});
-    this.selectedUsers.forEach(user => {user.Roles.push(this.role.RoleID); this.userService.updateUser(user).pipe(first()).subscribe()});
+    this.userStorage.getCurrentProject$().pipe(first()).subscribe(x => {if(x) this.role.ProjectID = x.ProjectID});
+    this.users.forEach(user => {user.Roles = this.selectedUsers.some(select=> select.UserID === user.UserID)?
+      user.Roles.includes(this.role.RoleID)?user.Roles:
+      user.Roles.concat(this.role.RoleID): 
+      user.Roles.includes(this.role.RoleID)?user.Roles.filter(role => role != this.role.RoleID):
+      user.Roles
+      ; this.userService.updateUser(user).pipe(first()).subscribe()});
     this.roleService.updateRole(this.role).subscribe();
   } 
 }
