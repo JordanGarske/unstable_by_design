@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit {
 
   clickProject(project: Project) {
     this.currentUser.setCurrentProject$(project);
-    this.currentUser.setProjects$();
     this.currentUser.setSelect$(1);
   }
   clickNewProject() {

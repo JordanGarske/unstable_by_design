@@ -23,7 +23,7 @@ export class TaskboardComponent implements OnInit {
     private taskService: TaskService
   ) {}
   ngOnInit(): void {
-    this.userStroage.getCurrentProject$().pipe(first()).subscribe((x) => {
+    this.userStroage.getCurrentProject$().subscribe((x) => {
       if (x) {
         this.project = x;
         this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
