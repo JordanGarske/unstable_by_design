@@ -16,29 +16,82 @@ import { first, map, tap } from 'rxjs';
   styleUrls: ['./project-create.component.scss'],
 })
 export class ProjectCreateComponent {
-  newProject: Project = {Name:"cool",ProjectID:4, Description:"cool",Color:"dog",Roles:[], Statuses:[]}
+  newProject: Project = {
+    Name: 'cool',
+    ProjectID: 4,
+    Description: 'cool',
+    Color: 'dog',
+    Roles: [],
+    Statuses: [],
+  };
 
-  user:User = {} as User 
-  constructor(private userStorage: CurrentUserStorageService  ,private projectService: ProjectService ,private userService: UserService, 
-    private roleService: RoleService, private statusService: StatusService) {
-      this.userStorage.getCurrentUser$().subscribe(x =>{ if(x){this.user = x}} )
-    }
+  user: User = {} as User;
+  constructor(
+    private userStorage: CurrentUserStorageService,
+    private projectService: ProjectService,
+    private userService: UserService,
+    private roleService: RoleService,
+    private statusService: StatusService
+  ) {
+    this.userStorage.getCurrentUser$().subscribe((x) => {
+      if (x) {
+        this.user = x;
+      }
+    });
+  }
 
-    createProject():void{
-      this.projectService.addProject(this.newProject).pipe(
-        map(value =>{
-          this.roleService.addRoles({ Name: "employee",  Description: "This is the first role",  Color: "green", ProjectID: value.ProjectID } as Role).pipe(first()).subscribe(role => {
-            this.user.Roles.push(role.RoleID);
-            this.userService.updateUser(this.user).pipe(first()).subscribe();
-          })
-  
-          this.statusService.addStatus({StatusID: 1, Name: "incompleted", Description: "this", ProjectID: value.ProjectID, Tasks:[] }as Status).pipe(first()).subscribe()
-          this.statusService.addStatus({StatusID: 1, Name: "inprogress", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).pipe(first()).subscribe()
-          this.statusService.addStatus({StatusID: 1, Name: "done", Description: "this", ProjectID: value.ProjectID, Tasks:[] } as Status).pipe(first()).subscribe()
+  createProject(): void {
+    this.projectService
+      .addProject(this.newProject)
+      .pipe(
+        map((value) => {
+          this.roleService
+            .addRoles({
+              Name: 'employee',
+              Description: 'This is the first role',
+              Color: 'green',
+              ProjectID: value.ProjectID,
+            } as Role)
+            .pipe(first())
+            .subscribe((role) => {
+              this.user.Roles.push(role.RoleID);
+              this.userService.updateUser(this.user).pipe(first()).subscribe();
+            });
+
+          this.statusService
+            .addStatus({
+              StatusID: 1,
+              Name: 'incompleted',
+              Description: 'this',
+              ProjectID: value.ProjectID,
+              Tasks: [],
+            } as Status)
+            .pipe(first())
+            .subscribe();
+          this.statusService
+            .addStatus({
+              StatusID: 1,
+              Name: 'inprogress',
+              Description: 'this',
+              ProjectID: value.ProjectID,
+              Tasks: [],
+            } as Status)
+            .pipe(first())
+            .subscribe();
+          this.statusService
+            .addStatus({
+              StatusID: 1,
+              Name: 'done',
+              Description: 'this',
+              ProjectID: value.ProjectID,
+              Tasks: [],
+            } as Status)
+            .pipe(first())
+            .subscribe();
         }),
         first(),
-        tap(_ => this.userStorage.setProjects$())
-      ).subscribe();
-    }
-
+        tap((_) => this.userStorage.setProjects$())
+      )
+      .subscribe();
+  }
 }

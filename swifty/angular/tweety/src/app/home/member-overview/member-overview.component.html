@@ -1,35 +1,45 @@
-<app-project-sidebar></app-project-sidebar>
-<div class="d-flex">
-    <div class="col-lg-6 col-md-12">
+<body>
+  <label id="title">Project Name Goes Here</label>
+  <div class="container">
+    <div class="col-lg-4">
+      <app-project-sidebar></app-project-sidebar>
+    </div>
+    <div class="col-lg-4">
       <div class="card">
-        <div class="card-header">
-          candidates
-        </div>
+        <div class="card-header">candidates</div>
         <ul class="list-group list-group-flush">
           <div *ngFor="let user of projectEmployee">
             <li class="list-group-item">
-              <button type="button" class="btn btn-primary" (click)="selectedUser(user)">{{user.UserID}}
-                {{user.Username}}
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="selectedUser(user)"
+              >
+                {{ user.UserID }}
+                {{ user.Username }}
               </button>
             </li>
           </div>
         </ul>
       </div>
     </div>
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-4">
       <div class="card">
         <ul class="list-group list-group-flush">
-          <div class="card-header">
-            employee
-          </div>
+          <div class="card-header">employee</div>
           <div *ngFor="let user of hires">
             <li class="list-group-item">
-              <button type="button" class="btn btn-primary" (click)="deleteUser(user)">{{user.UserID}} {{user.Username}}</button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="deleteUser(user)"
+              >
+                {{ user.UserID }} {{ user.Username }}
+              </button>
             </li>
           </div>
         </ul>
       </div>
     </div>
   </div>
-  
-  
+</body>
