@@ -20,7 +20,7 @@ export class ProjectCreateComponent {
     Name: 'ProjectName',
     ProjectID: 4,
     Description: 'This is the Project Description',
-    Color: 'black',
+    Color: '#e4b3ff',
     Roles: [],
     Statuses: [],
   };
@@ -81,39 +81,42 @@ export class ProjectCreateComponent {
             } as Status)
             .pipe(
               take(1),
-              finalize(() => this.statusService
-                .addStatus({
-                  StatusID: 1,
-                  Name: 'In Progress',
-                  Description: 'All tasks that are in-progress',
-                  ProjectID: value.ProjectID,
-                  Tasks: [],
-                } as Status)
-                .pipe(
-                  take(1),
-                  finalize(()=>
-                    this.statusService
-                    .addStatus({
-                      StatusID: 1,
-                      Name: 'Done',
-                      Description: 'All tasks that are complete',
-                      ProjectID: value.ProjectID,
-                      Tasks: [],
-                    } as Status)
-                    .pipe(
-                      take(1),
-                      finalize(() => {
-                        this.userStorage.setProjects$();
-                        this.userStorage.setSelect$(1);
-                      }),
+              finalize(() =>
+                this.statusService
+                  .addStatus({
+                    StatusID: 1,
+                    Name: 'In Progress',
+                    Description: 'All tasks that are in-progress',
+                    ProjectID: value.ProjectID,
+                    Tasks: [],
+                  } as Status)
+                  .pipe(
+                    take(1),
+                    finalize(() =>
+                      this.statusService
+                        .addStatus({
+                          StatusID: 1,
+                          Name: 'Done',
+                          Description: 'All tasks that are complete',
+                          ProjectID: value.ProjectID,
+                          Tasks: [],
+                        } as Status)
+                        .pipe(
+                          take(1),
+                          finalize(() => {
+                            this.userStorage.setProjects$();
+                            this.userStorage.setSelect$(1);
+                          })
+                        )
+                        .subscribe()
                     )
-                    .subscribe()
                   )
-                ).subscribe()
+                  .subscribe()
               )
-            ).subscribe();
+            )
+            .subscribe();
         }),
-        tap(x => this.userStorage.setCurrentProject$(x))
+        tap((x) => this.userStorage.setCurrentProject$(x))
       )
       .subscribe();
   }
