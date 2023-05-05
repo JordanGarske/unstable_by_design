@@ -1,4 +1,35 @@
-<div *ngFor="let user of allUsers">
-    <button (click)="selectedUser(user)">{{user.UserID}}</button>
-</div>
 <app-project-sidebar></app-project-sidebar>
+<div class="d-flex">
+    <div class="col-lg-6 col-md-12">
+      <div class="card">
+        <div class="card-header">
+          candidates
+        </div>
+        <ul class="list-group list-group-flush">
+          <div *ngFor="let user of projectEmployee">
+            <li class="list-group-item">
+              <button type="button" class="btn btn-primary" (click)="selectedUser(user)">{{user.UserID}}
+                {{user.Username}}
+              </button>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <div class="card-header">
+            employee
+          </div>
+          <div *ngFor="let user of hires">
+            <li class="list-group-item">
+              <button type="button" class="btn btn-primary" (click)="selectedUser(user)">{{user.UserID}} {{user.Username}}</button>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  
