@@ -56,7 +56,7 @@ export class ProjectCreateComponent {
             .addRoles({
               Name: 'employee',
               Description: 'This is the first role',
-              Color: 'green',
+              Color: '#00FF00',
               ProjectID: value.ProjectID,
             } as Role)
             .pipe(

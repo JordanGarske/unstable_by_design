@@ -11,7 +11,8 @@
         <div class="btn-group-vertical">
           <button
             class="btn"
-            [ngStyle]="{ 'background-color': project.Color }"
+            [ngStyle]="{'background-color': project.Color}"
+            [style.color]="isDark(project)?'white':'black'"
             (click)="clickProject(project)"
           >
             {{ project.Name }}

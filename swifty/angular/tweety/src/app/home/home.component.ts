@@ -32,6 +32,10 @@ export class HomeComponent implements OnInit {
     this.currentUser.getSelect$().subscribe((x) => this.select = x);
   }
 
+  isDark(project: Project){
+    return Number.parseInt(project.Color.charAt(1), 16) <= 7 && Number.parseInt(project.Color.charAt(3), 16) <= 7 && Number.parseInt(project.Color.charAt(5),16) <= 7
+  }
+
   clickProject(project: Project) {
     this.currentUser.setCurrentProject$(project);
     this.currentUser.setProjects$()
