@@ -1,34 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-2">
-      <div class="projects">
-        <img src="../../assets/resources/user-icon.png" alt="User Icon">
-        <h1>Projects</h1>
-        <div *ngFor="let project of projects">
-          <div class="row">
-            <div class="col-md-6">
-              <button
-              class="btn"
-              [ngStyle]="{ color: project.Color }"
-              (click)="clickProject(project)" >
-              {{ project.Name }}
-            </button>
-            </div>
-            <div class="col-md-6">
-              <button class="btn btn-danger float-right"  (click)="delete(project);" class="btn btn-danger">delete</button>
-            </div>
-          </div>
-
-       </div>
-        <div id="new-project">
-          <button class="btn" (click)="clickNewProject()">New Project</button>
+    <div class="col-lg-2">
+      <img class="row mx-auto" src="../../assets/resources/user-icon.png" alt="User Icon">
+      <h1 class="row mx-auto text-center">Projects</h1>
+      <div class="row py-3" *ngFor="let project of projects">
+        <div class="btn-group-vertical">
+          <button
+          class="btn btn-light"
+          [ngStyle]="{ color: project.Color }"
+          (click)="clickProject(project)" >
+          {{ project.Name }}
+          </button>
+          <button class="btn btn-danger"  (click)="delete(project);" class="btn btn-danger">delete</button>
         </div>
-        
+      </div>
+      <div class="row py-3">
+        <button class="btn btn-primary" (click)="clickNewProject()">New Project</button>
       </div>
     </div>
-    <div class="col-sm">
+      
+    <div class="col-lg">
       <!-- user name icon goes here -->
-      <div class="main">
+      <!-- <div class="main"> -->
         <!-- this is the main area for anything(switch statment) -->
         <app-taskboard *ngIf="select === 1"></app-taskboard>
         <app-project-overview *ngIf="select === 2"></app-project-overview>
@@ -41,7 +34,7 @@
         <app-status-create *ngIf="select === 9"></app-status-create>
         <app-task-create *ngIf="select === 10"></app-task-create>
         <app-project-create *ngIf="select === 11"></app-project-create>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>

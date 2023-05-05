@@ -4,7 +4,7 @@ import { CurrentUserStorageService } from '../current-user-storage.service';
 import { Task } from '../actors/task';
 import { User } from '../actors/user';
 import { Role } from '../actors/role';
-import { first, tap } from 'rxjs';
+import { first, map, tap } from 'rxjs';
 import { RoleService } from '../services/role.service';
 import { ProjectService } from '../services/project.service';
 
@@ -39,7 +39,10 @@ export class HomeComponent implements OnInit {
   }
   clickNewProject() {
     this.currentUser.setCurrentProject$(undefined);
-    this.currentUser.setSelect$(11);
+    this.currentUser.getSelect$().pipe(
+      tap(val => val !== 11?this.currentUser.setSelect$(11):null),
+      first()
+    ).subscribe()
   }
   delete(proj:Project){
     this.projectService.deleteProject(proj.ProjectID).pipe(first(),tap(_ => this.currentUser.setProjects$())).subscribe();
