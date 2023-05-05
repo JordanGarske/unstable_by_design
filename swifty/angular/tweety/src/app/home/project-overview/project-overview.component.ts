@@ -11,20 +11,29 @@ import { ProjectService } from 'src/app/services/project.service';
 })
 export class ProjectOverviewComponent implements OnInit {
   project = {} as Project;
+  success: boolean = false;
   constructor(
     private projectService: ProjectService,
     private userStorage: CurrentUserStorageService
   ) {}
   ngOnInit(): void {
     this.userStorage
-      .getCurrentProject$().pipe(first())
+      .getCurrentProject$()
+      .pipe(first())
       .subscribe((selected) => {
         if (selected) {
           this.project = selected;
         }
-      })
+      });
   }
   updateProject(): void {
-    this.projectService.updateProject(this.project).pipe(first(), tap(_ => this.userStorage.setProjects$())).subscribe();
+    this.projectService
+      .updateProject(this.project)
+      .pipe(
+        first(),
+        tap((_) => this.userStorage.setProjects$())
+      )
+      .subscribe();
+    this.success = true;
   }
 }
