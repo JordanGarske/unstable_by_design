@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { first, tap } from 'rxjs';
+import { finalize, first, take, tap } from 'rxjs';
 import { Project } from 'src/app/actors/project';
 import { Role } from 'src/app/actors/role';
 import { Status } from 'src/app/actors/status';
@@ -61,19 +61,19 @@ export class TaskboardComponent implements OnInit {
   }
 
   clickDeleteTask(taskID: number) {
-    this.taskService.deleteTask(taskID).pipe(tap(_ => this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
+    this.taskService.deleteTask(taskID).pipe(take(1), finalize(() => this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
       let temp = stat.filter((s) => s.ProjectID === this.project.ProjectID);
       this.statuses = temp;
-    })),first()).subscribe();
+    }))).subscribe();
     
   }
 
   deleteStatus(status: Status) {
-    this.statusService.deleteStatus(status.StatusID).pipe(first()).subscribe()
-    this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
+    this.statusService.deleteStatus(status.StatusID).pipe(take(1), finalize(() => this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
       let temp = stat.filter((s) => s.ProjectID === this.project.ProjectID);
       this.statuses = temp;
-    })
+    }))).subscribe()
+    
   }
 
   clickEditStatus(status: Status){
