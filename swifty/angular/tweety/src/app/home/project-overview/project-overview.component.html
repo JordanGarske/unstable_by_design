@@ -1,8 +1,10 @@
 <body>
-  <label id="title">{{ project.Name }}</label>
-  <div class="container">
-    <app-project-sidebar></app-project-sidebar>
-    <div class="main">
+  <label id="title">Overview</label>
+  <div class="row">
+    <div class="col-3">
+      <app-project-sidebar></app-project-sidebar>
+    </div>
+    <div class="col">
       <h2>Overview</h2>
       <div class="form-control">
         <label for="title">Title:</label>
@@ -31,12 +33,14 @@
             style="width: 85%"
           />
         </div>
-   
+
         <br /><br />
 
         <input type="hidden" id="box" name="box" value="" />
 
-        <button type="submit" class="btn btn-primary" (click)="updateProject()">Save Project</button>
+        <button type="submit" class="btn btn-primary" (click)="updateProject()">
+          Save Project
+        </button>
       </div>
     </div>
   </div>

@@ -57,7 +57,6 @@ export class ProjectCreateComponent {
               this.user.Roles.push(role.RoleID);
               this.userService.updateUser(this.user).pipe(first()).subscribe();
             });
-
           this.statusService
             .addStatus({
               StatusID: 1,
