@@ -50,12 +50,8 @@ export class ProjectCreateComponent {
     this.projectService
       .addProject(this.newProject)
       .pipe(
-        take(1),
-        finalize(() => {
-          this.userStorage.setProjects$();
-          this.userStorage.setSelect$(1);
-        }),
-        map((value) => {
+        first(),
+        tap((value) => {
           this.roleService
             .addRoles({
               Name: 'employee',
@@ -78,35 +74,46 @@ export class ProjectCreateComponent {
           this.statusService
             .addStatus({
               StatusID: 1,
-              Name: 'To Do:',
+              Name: 'To Do',
               Description: 'All tasks that need to be done',
               ProjectID: value.ProjectID,
               Tasks: [],
             } as Status)
-            .pipe(first())
-            .subscribe();
-          this.statusService
-            .addStatus({
-              StatusID: 1,
-              Name: 'In-progress:',
-              Description: 'All tasks that are in-progress',
-              ProjectID: value.ProjectID,
-              Tasks: [],
-            } as Status)
-            .pipe(first())
-            .subscribe();
-          this.statusService
-            .addStatus({
-              StatusID: 1,
-              Name: 'Complete:',
-              Description: 'All tasks that are complete',
-              ProjectID: value.ProjectID,
-              Tasks: [],
-            } as Status)
-            .pipe(first())
-            .subscribe();
-          this.userStorage.setCurrentProject$(value);
-        })
+            .pipe(
+              take(1),
+              finalize(() => this.statusService
+                .addStatus({
+                  StatusID: 1,
+                  Name: 'In Progress',
+                  Description: 'All tasks that are in-progress',
+                  ProjectID: value.ProjectID,
+                  Tasks: [],
+                } as Status)
+                .pipe(
+                  take(1),
+                  finalize(()=>
+                    this.statusService
+                    .addStatus({
+                      StatusID: 1,
+                      Name: 'Done',
+                      Description: 'All tasks that are complete',
+                      ProjectID: value.ProjectID,
+                      Tasks: [],
+                    } as Status)
+                    .pipe(
+                      take(1),
+                      finalize(() => {
+                        this.userStorage.setProjects$();
+                        this.userStorage.setSelect$(1);
+                      }),
+                    )
+                    .subscribe()
+                  )
+                ).subscribe()
+              )
+            ).subscribe();
+        }),
+        tap(x => this.userStorage.setCurrentProject$(x))
       )
       .subscribe();
   }

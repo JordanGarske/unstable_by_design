@@ -28,7 +28,7 @@ export class TaskboardComponent implements OnInit {
         this.project = x;
         this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
           let temp = stat.filter((s) => s.ProjectID === x.ProjectID);
-          this.statuses = temp;
+          this.statuses = temp.sort((x,y) => x.StatusID > y.StatusID?1:-1);
           // this.userStroage.getProjectStatusID().push(temp[0], temp[1], temp[1]);
           this.userStroage.getCurrentTask$().subscribe((excute) => {
             if (excute) this.userStroage.setSelect$(3);
@@ -48,7 +48,7 @@ export class TaskboardComponent implements OnInit {
     if (this.userStroage.getCurrentProject()) {
       this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
         temp = stat.filter((s) => s.ProjectID === proj.ProjectID);
-        this.statuses = temp;
+        this.statuses = temp.sort((x,y) => x.StatusID > y.StatusID?1:-1);
         // this.userStroage.getProjectStatusID().push(temp[0], temp[1], temp[1]);
         this.userStroage.getCurrentTask$().subscribe((excute) => {
           if (excute) this.userStroage.setSelect$(3);
@@ -63,7 +63,7 @@ export class TaskboardComponent implements OnInit {
   clickDeleteTask(taskID: number) {
     this.taskService.deleteTask(taskID).pipe(take(1), finalize(() => this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
       let temp = stat.filter((s) => s.ProjectID === this.project.ProjectID);
-      this.statuses = temp;
+      this.statuses = temp.sort((x,y) => x.StatusID > y.StatusID?1:-1);
     }))).subscribe();
     
   }
@@ -71,7 +71,7 @@ export class TaskboardComponent implements OnInit {
   deleteStatus(status: Status) {
     this.statusService.deleteStatus(status.StatusID).pipe(take(1), finalize(() => this.statusService.getStatuses().pipe(first()).subscribe((stat) => {
       let temp = stat.filter((s) => s.ProjectID === this.project.ProjectID);
-      this.statuses = temp;
+      this.statuses = temp.sort((x,y) => x.StatusID > y.StatusID?1:-1);
     }))).subscribe()
     
   }
