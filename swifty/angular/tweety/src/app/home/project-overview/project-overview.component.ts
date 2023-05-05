@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { first, tap } from 'rxjs';
 import { Project } from 'src/app/actors/project';
 import { CurrentUserStorageService } from 'src/app/current-user-storage.service';
 import { ProjectService } from 'src/app/services/project.service';
@@ -16,15 +17,14 @@ export class ProjectOverviewComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.userStorage
-      .getCurrentProject$()
+      .getCurrentProject$().pipe(first())
       .subscribe((selected) => {
         if (selected) {
           this.project = selected;
         }
       })
-      .unsubscribe();
   }
   updateProject(): void {
-    this.projectService.updateProject(this.project).subscribe();
+    this.projectService.updateProject(this.project).pipe(first(), tap(_ => this.userStorage.setProjects$())).subscribe();
   }
 }
