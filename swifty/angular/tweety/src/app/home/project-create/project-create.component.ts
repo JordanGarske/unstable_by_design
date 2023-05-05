@@ -8,7 +8,7 @@ import { StatusService } from 'src/app/services/status.service';
 import { UserService } from 'src/app/services/user.service';
 import { Status } from 'src/app/actors/status';
 import { Role } from 'src/app/actors/role';
-import { first, map, tap } from 'rxjs';
+import { finalize, first, map, take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-project-create',
@@ -44,6 +44,8 @@ export class ProjectCreateComponent {
     this.projectService
       .addProject(this.newProject)
       .pipe(
+        take(1),
+        finalize(() => this.userStorage.setProjects$()),
         map((value) => {
           this.roleService
             .addRoles({
@@ -88,9 +90,7 @@ export class ProjectCreateComponent {
             } as Status)
             .pipe(first())
             .subscribe();
-        }),
-        first(),
-        tap((_) => this.userStorage.setProjects$())
+        })
       )
       .subscribe();
   }
