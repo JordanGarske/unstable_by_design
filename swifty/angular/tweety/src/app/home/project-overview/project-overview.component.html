@@ -29,8 +29,8 @@
             type="color"
             id="html5colorpicker"
             onchange="clickColor(0, -1, -1, 5)"
-            value="{{ project.Color }}"
             style="width: 85%"
+            [(ngModel)]="project.Color"
           />
         </div>
 

@@ -1,5 +1,7 @@
 <header>
-  <label id="title">{{ project.Name }}</label>
+  <label id="title" [ngStyle]="{ color: project.Color }">{{
+    project.Name
+  }}</label>
   <button
     class="btn btn-primary"
     (click)="clickSettings()"

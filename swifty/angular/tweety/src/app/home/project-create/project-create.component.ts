@@ -17,10 +17,10 @@ import { finalize, first, map, take, tap } from 'rxjs';
 })
 export class ProjectCreateComponent {
   newProject: Project = {
-    Name: 'cool',
+    Name: 'ProjectName',
     ProjectID: 4,
-    Description: 'cool',
-    Color: 'dog',
+    Description: 'This is the Project Description',
+    Color: 'black',
     Roles: [],
     Statuses: [],
   };
@@ -33,13 +33,17 @@ export class ProjectCreateComponent {
     private roleService: RoleService,
     private statusService: StatusService
   ) {
-    this.userStorage.getCurrentUser$().pipe(tap(
-      (x) => {
-        if (x) {
-          this.user = x;
-        }
-      }
-    ),first()).subscribe();
+    this.userStorage
+      .getCurrentUser$()
+      .pipe(
+        tap((x) => {
+          if (x) {
+            this.user = x;
+          }
+        }),
+        first()
+      )
+      .subscribe();
   }
 
   createProject(): void {
@@ -47,7 +51,10 @@ export class ProjectCreateComponent {
       .addProject(this.newProject)
       .pipe(
         take(1),
-        finalize(() => {this.userStorage.setProjects$(); this.userStorage.setSelect$(1)}),
+        finalize(() => {
+          this.userStorage.setProjects$();
+          this.userStorage.setSelect$(1);
+        }),
         map((value) => {
           this.roleService
             .addRoles({
@@ -56,17 +63,22 @@ export class ProjectCreateComponent {
               Color: 'green',
               ProjectID: value.ProjectID,
             } as Role)
-            .pipe(map((role) => {
+            .pipe(
+              map((role) => {
                 this.user.Roles.push(role.RoleID);
-                this.userService.updateUser(this.user).pipe(first()).subscribe();
-            }),
-            first()
-            ).subscribe();
+                this.userService
+                  .updateUser(this.user)
+                  .pipe(first())
+                  .subscribe();
+              }),
+              first()
+            )
+            .subscribe();
 
           this.statusService
             .addStatus({
               StatusID: 1,
-              Name: 'incompleted',
+              Name: 'incomplete',
               Description: 'this',
               ProjectID: value.ProjectID,
               Tasks: [],
@@ -94,7 +106,8 @@ export class ProjectCreateComponent {
             .pipe(first())
             .subscribe();
           this.userStorage.setCurrentProject$(value);
-        }),
-      ).subscribe();
+        })
+      )
+      .subscribe();
   }
 }
