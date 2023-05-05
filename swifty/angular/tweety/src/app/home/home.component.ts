@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     this.currentUser.setSelect$(11);
   }
   delete(proj:Project){
-    this.projects = this.projects.filter( proj => proj.ProjectID != proj.ProjectID )
+    this.projects = this.projects.filter( pro => proj.ProjectID != pro.ProjectID )
     this.projectService.deleteProject(proj.ProjectID).subscribe();
   }
 }
