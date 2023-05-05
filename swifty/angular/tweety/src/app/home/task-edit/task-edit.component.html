@@ -13,8 +13,8 @@
           </div>
           <div *ngIf="statusOptions" class="form-group">
             <label for="ticketStatus">Task Status</label>
-            <select class="form-control"  >
-                    <option (change)="task.StatusID = stat.StatusID" *ngFor="let stat of statusOptions">{{stat.Name}}</option > 
+            <select class="form-control" (change)="updateStatusID($event)">
+                    <option *ngFor="let stat of statusOptions" value = {{stat.StatusID}}>{{stat.Name}}</option > 
             </select>
           </div>
           <button type="submit" class="btn btn-primary" (click)="updateTask()">Update Task</button>
