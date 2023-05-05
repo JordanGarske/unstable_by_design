@@ -20,7 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['UserID', 'Username', 'Password', 'Roles']
-        extra_kwargs = {'UserID': {'required': False}}
+        extra_kwargs = {'UserID': {'required': False}, 'Roles': {'required': False}}
 
     # def create(self, validated_data):
     #     request = self.context['request']
