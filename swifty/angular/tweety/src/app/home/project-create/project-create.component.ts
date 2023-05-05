@@ -78,8 +78,8 @@ export class ProjectCreateComponent {
           this.statusService
             .addStatus({
               StatusID: 1,
-              Name: 'incomplete',
-              Description: 'this',
+              Name: 'To Do:',
+              Description: 'All tasks that need to be done',
               ProjectID: value.ProjectID,
               Tasks: [],
             } as Status)
@@ -88,8 +88,8 @@ export class ProjectCreateComponent {
           this.statusService
             .addStatus({
               StatusID: 1,
-              Name: 'inprogress',
-              Description: 'this',
+              Name: 'In-progress:',
+              Description: 'All tasks that are in-progress',
               ProjectID: value.ProjectID,
               Tasks: [],
             } as Status)
@@ -98,8 +98,8 @@ export class ProjectCreateComponent {
           this.statusService
             .addStatus({
               StatusID: 1,
-              Name: 'done',
-              Description: 'this',
+              Name: 'Complete:',
+              Description: 'All tasks that are complete',
               ProjectID: value.ProjectID,
               Tasks: [],
             } as Status)
