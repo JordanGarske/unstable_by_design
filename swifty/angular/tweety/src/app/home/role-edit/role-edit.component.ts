@@ -23,11 +23,23 @@ export class RoleEditComponent implements OnInit {
     private userStorage: CurrentUserStorageService){}
   ngOnInit( ): void {
     this.userStorage.getCurrentRole$().pipe(
+      tap(role => {
+        if(!role)
+          return
+        this.userService.getUsers().pipe(
+          map(users =>
+            users.filter(user=> user.Roles.includes(role.RoleID))
+          ),
+          first(),
+        ).subscribe(x => {this.selectedUsers = x; console.log(x)}) 
+      }),
       first()
     ).subscribe(selected => {
       if(selected){
         this.role = selected;
-      }});
+    }});
+    
+    
 
     this.userStorage.getCurrentProject$().pipe(
       switchMap(project => {
@@ -45,10 +57,10 @@ export class RoleEditComponent implements OnInit {
       first()
     ).subscribe(users => this.users = users);
   }
+
   updateRole():void{
-    this.userStorage.getCurrentProject$().subscribe(x => {if(x) this.role.ProjectID = x.ProjectID})
-    this.selectedUsers.forEach(user => {user.Roles.push(this.role.RoleID); this.userService.updateUser(user).pipe(first()).subscribe()})
-    // Implement the ability to add users
+    this.userStorage.getCurrentProject$().subscribe(x => {if(x) this.role.ProjectID = x.ProjectID});
+    this.selectedUsers.forEach(user => {user.Roles.push(this.role.RoleID); this.userService.updateUser(user).pipe(first()).subscribe()});
     this.roleService.updateRole(this.role).subscribe();
   } 
 }
