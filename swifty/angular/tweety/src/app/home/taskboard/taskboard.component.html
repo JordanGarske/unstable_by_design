@@ -1,40 +1,26 @@
-<header>
-  <label id="title" [ngStyle]="{ color: project.Color }">{{
-    project.Name
-  }}</label>
-  <button
-    class="btn btn-primary"
-    (click)="clickSettings()"
-    id="settings-icon"
-    id="settings-button"
-  >
-    <img
-      id="settings-icon"
-      src="../../../assets/resources/settings_wheel_icon.png"
-      alt="settings"
-    />
+<header class="bg-dark text-light py-2 px-3 d-flex justify-content-between align-items-center">
+  <label id="title" [ngStyle]="{ color: project.Color }">{{ project.Name }}</label>
+  <button class="btn btn-primary ml-auto" (click)="clickSettings()">
+    <img id="settings-icon" src="../../../assets/resources/settings_wheel_icon.png" alt="settings" />
   </button>
 </header>
+
 <body>
   <div class="container">
     <div class="box" *ngFor="let status of statuses">
-      <h2>{{ status.Name }}</h2>
-      <div class="btn-group">
-        <button
-          class="col remove-status btn btn-danger"
-          (click)="deleteStatus(status)"
-        >
-          Delete
-        </button>
-        <button class="col btn btn-success" (click)="clickEditStatus(status)">
-          Edit
-        </button>
-        <button
-          class="col btn btn-primary add-button"
-          (click)="addTask(status)"
-        >
-          +
-        </button>
+      <h2 class="text-center mb-4">{{ status.Name }}</h2>
+      <div class="d-flex justify-content-center mb-4">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-danger" (click)="deleteStatus(status)">
+            <i class="bi bi-trash"></i> Delete
+          </button>
+          <button type="button" class="btn btn-success" (click)="clickEditStatus(status)">
+            <i class="bi bi-pencil"></i> Edit
+          </button>
+          <button type="button" class="btn btn-primary" (click)="addTask(status)">
+            <i class="bi bi-plus"></i> +
+          </button>
+        </div>
       </div>
       <div class="row btn-group btn-group-sm " *ngFor="let task of status.Tasks">
         <app-task-detail class="col-lg-10 p-0 m-0" [certainTask]="task"></app-task-detail>

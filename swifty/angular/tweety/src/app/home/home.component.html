@@ -12,21 +12,25 @@
           <h1 class="row mx-auto text-center text-primary">Projects</h1>
           <div class="row py-3" *ngFor="let project of projects">
             <div class="btn-group-vertical">
-              <button class="btn btn-outline-primary"
-                      [style.backgroundColor]="project.Color"
-                      [style.color]="isDark(project) ? 'white' : 'black'"
-                      (click)="clickProject(project)">
-                {{ project.Name }}
-              </button>
-              <button class="btn btn-outline-danger"
-                      (click)="delete(project)">
-                Delete
-              </button>
+              <button
+              class="btn"
+              [ngStyle]="{'background-color': project.Color}"
+              [style.color]="isDark(project)?'white':'black'"
+              (click)="clickProject(project)"
+            >
+              {{ project.Name }}
+            </button>
+            <button
+              class="btn btn-danger"
+              (click)="delete(project)"
+              class="btn btn-danger"
+            >
+              Delete
+            </button>
             </div>
           </div>
           <div class="row py-3">
-            <button class="btn btn-primary"
-                    (click)="clickNewProject()">
+            <button class="btn btn-primary" (click)="clickNewProject()">
               New Project
             </button>
           </div>
