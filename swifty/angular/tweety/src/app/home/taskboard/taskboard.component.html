@@ -1,5 +1,5 @@
-<header class="bg-dark text-light py-2 px-3 d-flex justify-content-between align-items-center">
-  <label id="title" [ngStyle]="{ color: project.Color }">{{ project.Name }}</label>
+<header [ngStyle]="{ 'background-color': project.Color }" class="py-2 px-3 d-flex justify-content-between align-items-center">
+  <label id="title" [style.color]="isDark(project) ? 'white' : 'black'">{{ project.Name }}</label>
   <button class="btn btn-primary ml-auto" (click)="clickSettings()">
     <img id="settings-icon" src="../../../assets/resources/settings_wheel_icon.png" alt="settings" />
   </button>

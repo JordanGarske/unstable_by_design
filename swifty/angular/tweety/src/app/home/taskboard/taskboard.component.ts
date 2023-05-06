@@ -37,6 +37,11 @@ export class TaskboardComponent implements OnInit {
       }
     });
   }
+
+  isDark(project: Project){
+    return Number.parseInt(project.Color.charAt(1), 16) <= 7 && Number.parseInt(project.Color.charAt(3), 16) <= 7 && Number.parseInt(project.Color.charAt(5),16) <= 7
+  }
+
   addTask(status: Status) {
     this.userStroage.setCurrentStatus$(status);
     this.userStroage.setSelect$(10);
