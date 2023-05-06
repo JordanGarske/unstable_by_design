@@ -36,17 +36,10 @@
           +
         </button>
       </div>
-      <div class="row btn-group" *ngFor="let task of status.Tasks">
-        <app-task-detail
-          class="btn col-lg-10"
-          [certainTask]="task"
-        ></app-task-detail>
+      <div class="row btn-group btn-group-sm " *ngFor="let task of status.Tasks">
+        <app-task-detail class="col-lg-10 p-0 m-0" [certainTask]="task"></app-task-detail>
         <button class="btn btn-danger col-sm-2" (click)="clickDeleteTask(task)">
-          <img
-            class="img-fluid"
-            src="../../../../assets/resources/trash-can.png"
-            alt="delete"
-          />
+          <img class="img-fluid" src="../../../../assets/resources/trash-can.png" alt="delete" />
         </button>
       </div>
     </div>
