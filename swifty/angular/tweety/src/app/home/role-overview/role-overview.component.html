@@ -5,14 +5,18 @@
       <app-project-sidebar></app-project-sidebar>
     </div>
     <div class="col">
-      <div class="card row py-3" *ngFor="let role of roles">
-        <button class="btn col" (click)="clickSelectRole(role)">
-          <h5 class="card-title">{{ role.Name }}</h5>
-          <p class="card-text">{{ role.Description }}</p>
-        </button>
-        <button class="btn btn-danger col" (click)="clickDeleteRole(role)">
-          Delete
-        </button>
+      <div   *ngFor="let role of roles">
+        <div class="card row py-3" *ngIf="(role.Name!=='employee')">
+          <button class="btn col" (click)="clickSelectRole(role)">
+            <h5 class="card-title">{{ role.Name }}</h5>
+            <p class="card-text">{{ role.Description }}</p>
+          </button>
+          <button  class="btn btn-danger col" (click)="clickDeleteRole(role)">
+            Delete
+          </button>
+
+        </div>
+
       </div>
 
       <div class="card row py-3">
