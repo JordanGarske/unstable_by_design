@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { first } from 'rxjs';
 import { Status } from 'src/app/actors/status';
 import { CurrentUserStorageService } from 'src/app/current-user-storage.service';
 import { StatusService } from 'src/app/services/status.service';
@@ -17,7 +18,7 @@ export class StatusCreateComponent {
   ) {}
 
   createStatus(): void {
-    this.currentUserStorage.getCurrentProject$().subscribe((x) => {
+    this.currentUserStorage.getCurrentProject$().pipe(first()).subscribe((x) => {
       if (x) this.status.ProjectID = x.ProjectID;
     });
     this.status.Tasks = [];

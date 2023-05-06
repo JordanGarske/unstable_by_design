@@ -35,15 +35,12 @@ export class ProjectCreateComponent {
   ) {
     this.userStorage
       .getCurrentUser$()
-      .pipe(
-        tap((x) => {
-          if (x) {
-            this.user = x;
-          }
-        }),
-        first()
-      )
-      .subscribe();
+      .pipe(first())
+      .subscribe((x) => {
+        if (x) {
+          this.user = x;
+        }
+      });
   }
 
   createProject(): void {
@@ -60,60 +57,71 @@ export class ProjectCreateComponent {
               ProjectID: value.ProjectID,
             } as Role)
             .pipe(
-              map((role) => {
-                this.user.Roles.push(role.RoleID);
-                this.userService
-                  .updateUser(this.user)
-                  .pipe(first())
-                  .subscribe();
-              }),
               take(1),
-              finalize(() =>
+              map((role) =>
+                this.user.Roles.push(role.RoleID)
+              ),
+              finalize(() => {
+                this.roleService
+                  .getRoles()
+                  .pipe(
+                    take(1),
+                    map(
+                      (roles) =>
+                        (this.user.Roles = roles
+                          .filter((r) => this.user.Roles.includes(r.RoleID))
+                          .map((r) => r.RoleID))
+                    ),
+                    finalize(() => this.userService
+                      .updateUser(this.user)
+                      .pipe(first())
+                      .subscribe())
+                    ).subscribe();
                 this.statusService
-                .addStatus({
-                  StatusID: 1,
-                  Name: 'To Do',
-                  Description: 'All tasks that need to be done',
-                  ProjectID: value.ProjectID,
-                  Tasks: [],
-                } as Status)
-                .pipe(
-                  take(1),
-                  finalize(() =>
-                    this.statusService
-                      .addStatus({
-                        StatusID: 1,
-                        Name: 'In Progress',
-                        Description: 'All tasks that are in-progress',
-                        ProjectID: value.ProjectID,
-                        Tasks: [],
-                      } as Status)
-                      .pipe(
-                        take(1),
-                        finalize(() =>
-                          this.statusService
-                            .addStatus({
-                              StatusID: 1,
-                              Name: 'Done',
-                              Description: 'All tasks that are complete',
-                              ProjectID: value.ProjectID,
-                              Tasks: [],
-                            } as Status)
-                            .pipe(
-                              take(1),
-                              finalize(() => {
-                                this.userStorage.setProjects$();
-                                this.userStorage.setSelect$(1);
-                              })
-                            )
-                            .subscribe()
+                  .addStatus({
+                    StatusID: 1,
+                    Name: 'To Do',
+                    Description: 'All tasks that need to be done',
+                    ProjectID: value.ProjectID,
+                    Tasks: [],
+                  } as Status)
+                  .pipe(
+                    take(1),
+                    finalize(() =>
+                      this.statusService
+                        .addStatus({
+                          StatusID: 1,
+                          Name: 'In Progress',
+                          Description: 'All tasks that are in-progress',
+                          ProjectID: value.ProjectID,
+                          Tasks: [],
+                        } as Status)
+                        .pipe(
+                          take(1),
+                          finalize(() =>
+                            this.statusService
+                              .addStatus({
+                                StatusID: 1,
+                                Name: 'Done',
+                                Description: 'All tasks that are complete',
+                                ProjectID: value.ProjectID,
+                                Tasks: [],
+                              } as Status)
+                              .pipe(
+                                take(1),
+                                finalize(() => {
+                                  this.userStorage.setProjects$();
+                                  this.userStorage.setSelect$(1);
+                                })
+                              )
+                              .subscribe()
+                          )
                         )
-                      )
-                      .subscribe()
+                        .subscribe()
+                    )
                   )
-                )
-                .subscribe()
-              )
+                  .subscribe();
+              })
             )
             .subscribe();
         }),

@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
     ).subscribe()
   }
   delete(proj:Project){
-    this.projectService.deleteProject(proj.ProjectID).pipe(take(1),finalize(() => this.currentUser.setProjects$())).subscribe();
     this.currentUser.setSelect$(0);
+    this.projectService.deleteProject(proj.ProjectID).pipe(take(1),finalize(() => this.currentUser.setProjects$())).subscribe();
   }
 }

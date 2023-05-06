@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs';
 import { User } from 'src/app/actors/user';
 import { CurrentUserStorageService } from 'src/app/current-user-storage.service';
 import { RoleService } from 'src/app/services/role.service';
@@ -15,10 +16,10 @@ export class MemberOverviewComponent  implements OnInit{
   hires: User[] = [];
   constructor(private userService: UserService, private roleService: RoleService, private userStorage: CurrentUserStorageService ){ }
   ngOnInit():void{
-    this.userStorage.getCurrentProject$().subscribe(proj =>{
-       this.roleService.getRoles().subscribe(roles=> this.id = roles.filter( role => role.ProjectID === proj?.ProjectID
+    this.userStorage.getCurrentProject$().pipe(first()).subscribe(proj =>{
+       this.roleService.getRoles().pipe(first()).subscribe(roles=> this.id = roles.filter( role => role.ProjectID === proj?.ProjectID
          && role.Name === "employee" )[0].RoleID )}) ;
-    this.userService.getUsers().subscribe(users => this.dividUser(users));
+    this.userService.getUsers().pipe(first()).subscribe(users => this.dividUser(users));
     
   }
   dividUser(users: User[]):void{
@@ -39,11 +40,11 @@ export class MemberOverviewComponent  implements OnInit{
         user.Tasks = [];
      }
        user.Roles.push(this.id); 
-      this.userService.updateUser(user).subscribe(x => this.userService.getUsers().subscribe(users => this.dividUser(users) ));
+      this.userService.updateUser(user).pipe(first()).subscribe(x => this.userService.getUsers().subscribe(users => this.dividUser(users) ));
     }
   }
   deleteUser(user:User):void{
     user.Roles = user.Roles.filter(role => role != this.id) ;
-    this.userService.updateUser(user).subscribe(x => this.userService.getUsers().subscribe(users => this.dividUser(users)));
+    this.userService.updateUser(user).pipe(first()).subscribe(x => this.userService.getUsers().pipe(first()).subscribe(users => this.dividUser(users)));
   }
 }
