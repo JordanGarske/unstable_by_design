@@ -13,54 +13,20 @@
 // .col-2 {
 //   width: 180px;
 // }
-.card-header{
-  background-color: #33cc99;
+#new-project {
+  margin-top: 1rem;
 }
-
-.user-icon {
+.main {
+  background-color: lightskyblue;
+  height: 100vh;
+}
+h1 {
+  font-size: 37px;
+}
+img {
   width: 135px;
   height: 135px;
 }
-
-
-
-.main {
-  width: 100%;
-  min-height: calc(100vh - 20px);
-}
-
-h1 {
- 
-  color:  white;
-  font-size: 40px;
-  text-align: center; 
-  padding: 20px ;
-}
-
-h2{
- 
-  color: #33cc99;
-  text-align: center; 
-
-}
-
-.btn {
-  width: 100%;
-}
-
-.btn-danger {
-  margin-top: 0.5rem;
-}
-
-.btn{
-  background-color: #33cc99;
-  color: white;
-}
-
-.btn:hover {
-  background-color: #b9d4cb;
-}
-
 // img:hover {
 //   filter: opacity(0.8);
 // }
