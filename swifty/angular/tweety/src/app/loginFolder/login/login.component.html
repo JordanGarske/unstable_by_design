@@ -1,8 +1,8 @@
 <body>
   <div class="container my-5">
     <div class="card shadow-lg">
-      <div class="card-header bg-mint text-light text-center">
-        <h1 style="font-style: italic;">Swiftly</h1>
+      <div class="card-header bg-primary text-light text-center">
+        <h1>Swiftly</h1>
       </div>
       <div class="card-body">
         <form>
@@ -13,8 +13,8 @@
             <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" value="password1" placeholder="Password" required />
           </div>
           <div class="form-group text-center">
-            <button class="btn" (click)="checkPassword()">Login</button><br/>
-            <a routerLink="/create" class="btn">Create Account</a>
+            <button class="btn btn-primary mr-2" (click)="checkPassword()">Login</button>
+            <a routerLink="/create" class="btn btn-outline-primary">Create Account</a>
           </div>
         </form>
       </div>
