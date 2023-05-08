@@ -1,38 +1,42 @@
-<div  class="container my-5" >
+<div class="container my-5">
   <div class="card shadow-lg">
-    <div class="card-header text-center">
-      <h1 style="font-style: italic;">Dashboard</h1> <!--font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;-->
+    <div class="card-header bg-primary text-light text-center">
+      <h2>Projects</h2>
     </div>
     <div class="card-body">
       <div class="row">
         <div class="col-lg-2">
-          <div class="text-center mb-4">
-            <img src="../../assets/resources/user-icon.png" alt="User Icon" class="user-icon" />
-          </div>
-          <h2>Projects</h2>
-          <div class="project-list" *ngFor="let project of projects">
+          <img class="row mx-auto"
+               src="../../assets/resources/user-icon.png"
+               alt="User Icon" />
+          <h1 class="row mx-auto text-center text-primary">Projects</h1>
+          <div class="row p-3"  *ngFor="let project of projects">
             <div class="btn-group-vertical">
               <button
-                class="btn"
-                [style.background-color]="project.Color"
-                [style.color]="isDark(project) ? 'white' : 'black'"
-                (click)="clickProject(project)"
-              >
-                {{ project.Name }}
-              </button>
-              <button class="btn btn-danger" (click)="delete(project)">
-                Delete
-              </button>
+              class="btn"
+              [ngStyle]="{'background-color': project.Color}"
+              [style.color]="isDark(project)?'white':'black'"
+              (click)="clickProject(project)"
+            >
+              {{ project.Name }}
+            </button>
+            <button
+              class="btn btn-danger"
+              (click)="delete(project)"
+              class="btn btn-danger"
+            >
+              Delete
+            </button>
             </div>
           </div>
-          <div class="text-center">
-            <button class="btn shadow-lg" (click)="clickNewProject()">
+          <div class="row p-3">
+            <button class="btn btn-primary shadow-lg" (click)="clickNewProject()">
               New Project
             </button>
           </div>
         </div>
         <div class="col-lg p-3 shadow-lg">
-           <!-- user name icon goes here -->
+          <!-- user name icon goes here -->
           <!-- <div class="main"> -->
           <!-- this is the main area for anything(switch statement) -->
           <app-taskboard *ngIf="select === 1"></app-taskboard>
