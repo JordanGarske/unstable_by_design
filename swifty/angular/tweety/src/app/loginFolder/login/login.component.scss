@@ -1,60 +1,80 @@
-li{
-    color: black;
-}
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    color: white;
-    height: 100vh;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  height: 100vh;
+}
 
-  .login-box {
-    width: 400px;
-    margin: auto;
-    margin-top: 50px;
-    background-color: grey;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px #ccc;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+  margin-bottom: 600px;
+}
 
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
+.card-header {
+  background-color: #33cc99;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 5px 5px 0 0;
+}
 
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+.card-body {
+  margin-top: 20px;
+}
 
-  input[type="text"],
-  input[type="password"] {
-    width: 89%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-  }
+h1 {
+  text-align: center;
+  margin: 10px;
+  color: #fff;
+}
 
-  input[type="submit"] {
-    background-color: lightgrey;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 110px;
-  }
-  #signup {
-    background-color: lightgrey;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 45px;
-    margin-left: 8px;
-  }
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+button {
+  margin: 5px 5px 5px 5px;
+  width: 100%;
+  background-color: #33cc99;
+  color: #000;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+ 
+a { width: 100%;
+  margin-left: 3px ;
+  background-color: #33cc99;
+  color: #000;
+  text-decoration: none;
+}
+
+#btn:hover {
+  background-color: #33cc99;
+  color: #000;
+}
+#btn{
+  width: 100%;
+ }
